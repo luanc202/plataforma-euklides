@@ -81,7 +81,7 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 			//a variável $id_sala recebe o valor do array corresponde ao id
 			$id_sala = $array_sala['id'];
 			
-			//query para ser inserido na tabela aluno, incluindo a sala em que ele está cadastrado
+			//query para ser inserido na tabela aluno, incluindo a sala em que ele está
 			$query = "INSERT INTO aluno (nome,email,senha,sala_id) VALUES ('$nome','$email','$senha',$id_sala)";
 			//a variável $insert recebe o resultado da execução da query
 			$insert = mysqli_query($connect,$query);

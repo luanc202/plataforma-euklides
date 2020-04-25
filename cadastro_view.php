@@ -25,7 +25,7 @@ if (isset($_GET['nome'])){
 	setcookie("existe_sala",$existe_sala);
 	setcookie("sala",$nome_sala);
 }else {
-	//se não existir, são enviados os cookies com valores de 0 e espaço
+	//se não existir, são enviados os valores 0 e espaço
 	setcookie("existe_sala",0);
 	setcookie("sala","");
 }

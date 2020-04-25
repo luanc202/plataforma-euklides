@@ -12,7 +12,12 @@
 	$query_select_salas = "SELECT s.nome FROM sala s, professor p WHERE p.email = '$email'
 						AND s.professor_id = p.id";
 	//a variável $con recebe o resultado da execução da query
-	$con      = mysqli_query($connect,$query_select_salas);
+	$salas      = mysqli_query($connect,$query_select_salas);
+	
+	//seleciona o nome e o id de todos os objetos de aprendizagem cadastrados
+	$query_select_jogos = "SELECT * FROM jogo";
+	//a variável $con recebe o resultado da execução da query
+	$jogos      = mysqli_query($connect,$query_select_jogos);
 	
 ?>
 
@@ -31,7 +36,7 @@
     <?php
     //a variável $dado irá receber cada índice do array criado a partir da variável $con
     //enquanto houver índices vai ser criado uma tupla na tabela do html 
-    while($dado = $con->fetch_array()) { ?>
+    while($dado = $salas->fetch_array()) { ?>
     <tr>
       <td><a href="sala.php?nome=<?php echo $dado['nome']; ?>"><?php echo $dado['nome']; ?></a></td>
       <td>
@@ -44,6 +49,14 @@
   </table>
   <form method="POST" action="inicial_professor.php">
 	<label>Nome da sala:</label><input type="text" name="nome_sala" id="nome_sala"><br>
+	<label>Objetos de aprendizagem</label>
+	<select name="jogo" id="jogo">
+		<option value="">Selecione</option>
+		<?php
+	    while($dado_jogo = $jogos->fetch_array()) { ?>
+		<option value="<?php echo $dado_jogo['id']; ?>"><?php echo $dado_jogo['nome']; ?></option>
+		<?php } ?>
+	</select>
 	<input type="submit" value="Criar sala" id="nova_sala" name="nova_sala">
   </form>
 </body>
