@@ -1,12 +1,17 @@
 <?php
 //https://zerobugs.com.br/ver-post/exibir-dadosregistros-do-banco-de-dados-mysql-com-php/
 
+	//recebe o email do professor como cookie da página login.php
 	$email = $_COOKIE['email'];
+	//cria a conexão
 	$connect = mysqli_connect('localhost','root','admin');
+	//seleciona o banco de dados euklides
 	$db = mysqli_select_db($connect,'euklides');
 	
+	//seleciona o nome de todas as salas criadas pelo professor do email recebido
 	$query_select_salas = "SELECT s.nome FROM sala s, professor p WHERE p.email = '$email'
 						AND s.professor_id = p.id";
+	//a variável $con recebe o resultado da execução da query
 	$con      = mysqli_query($connect,$query_select_salas);
 	
 ?>
@@ -23,7 +28,10 @@
       <td>Nome</td>
       <td>Acao</td>
     </tr>
-    <?php while($dado = $con->fetch_array()) { ?>
+    <?php
+    //a variável $dado irá receber cada índice do array criado a partir da variável $con
+    //enquanto houver índices vai ser criado uma tupla na tabela do html 
+    while($dado = $con->fetch_array()) { ?>
     <tr>
       <td><a href="sala.php?nome=<?php echo $dado['nome']; ?>"><?php echo $dado['nome']; ?></a></td>
       <td>
