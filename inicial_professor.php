@@ -1,8 +1,9 @@
 <?php
+
 //caso o professor tenha criado uma nova sala, a variável $nome_sala irá receber o nome digitado
 $nome_sala = $_POST['nome_sala'];
-//caso o professor tenha criado uma nova sala, a variável $jogo irá receber o código do jogo selecionado
-$cod_jogo = $_POST['jogo'];
+// //caso o professor tenha criado uma nova sala, a variável $jogo irá receber o código do jogo selecionado
+// $cod_jogo = $_POST['jogo'];
 //recebe o cookie referente ao email enviado pela página login.php
 $email = $_COOKIE['email'];
 //exclui o cookie recebido
@@ -36,9 +37,14 @@ $array_sala = mysqli_fetch_array($select_sala);
 //a variável $id_sala recebe o valor do array corresponde ao id
 $id_sala = $array_sala['id'];
 
-//cria a query para cadastrar o jogo e a sala na tabela sala_jogo
-$query_insert_sala_jogo = "INSERT INTO sala_jogo (sala_id,jogo_id) VALUES ($id_sala,$cod_jogo)";
-$insert_sala_jogo = mysqli_query($connect,$query_insert_sala_jogo);
+//se o professor tiver cadastrado jogos, ou seja, selecionado os checkbox
+if(!empty($_POST['check_list'])) {
+	foreach($_POST['check_list'] as $selected) {
+		//cria a query para cadastrar o jogo e a sala na tabela sala_jogo
+		$query_insert_sala_jogo = "INSERT INTO sala_jogo (sala_id,jogo_id) VALUES ($id_sala,$selected)";
+		$insert_sala_jogo = mysqli_query($connect,$query_insert_sala_jogo);
+	}
+}
 
 //se a inserção tiver ocorrido
 if($insert){

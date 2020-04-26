@@ -50,13 +50,13 @@
   <form method="POST" action="inicial_professor.php">
 	<label>Nome da sala:</label><input type="text" name="nome_sala" id="nome_sala"><br>
 	<label>Objetos de aprendizagem</label>
-	<select name="jogo" id="jogo">
-		<option value="">Selecione</option>
-		<?php
-	    while($dado_jogo = $jogos->fetch_array()) { ?>
-		<option value="<?php echo $dado_jogo['id']; ?>"><?php echo $dado_jogo['nome']; ?></option>
-		<?php } ?>
-	</select>
+	<?php
+	//enquanto houver jogos cadastrados, é criado um checkbox
+	while($dado_jogo = $jogos->fetch_array()) { ?>
+		<input type="checkbox" id="<?php echo $dado_jogo['id']; ?>" name="check_list[]" 
+				value="<?php echo $dado_jogo['id']; ?>">
+  		<label for="<?php echo $dado_jogo['id']; ?>"> <?php echo $dado_jogo['nome']; ?></label><br>
+	<?php } ?>
 	<input type="submit" value="Criar sala" id="nova_sala" name="nova_sala">
   </form>
 </body>

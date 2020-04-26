@@ -22,6 +22,12 @@ $cod_aluno = $array_aluno['id'];
 
 //apenas emite uma mensagem de qual sala o aluno está
 echo '<p>Voce esta na sala '.$nome_sala.'</p>';
+
+//seleciona os jogos disponíveis na sala
+$query_select_jogo = "SELECT j.id, j.nome FROM jogo j, sala s, sala_jogo sj 
+WHERE s.nome = '$nome_sala' AND s.id = sj.sala_id AND j.id = sj.jogo_id";
+//$select_jogo recebe o resultado da execução da query
+$select_jogo = mysqli_query($connect,$query_select_jogo);
 ?>
 
 <html>
@@ -35,11 +41,16 @@ echo '<p>Voce esta na sala '.$nome_sala.'</p>';
       <td>Jogo</td>
       <td>Descricao</td>
     </tr>
+        <?php
+	//enquanto houver jogos cadastrados, é mostrado cada um na tabela
+    while($dado_jogo = $select_jogo->fetch_array()) { ?>
     <tr>
-      <td>
-      	<a href="quiz-game/index.html?<?php echo $cod_aluno; ?>">Quiz Game</a></td>
-      <td>Descricao do jogo</td>
+	    <td>
+	      <a href="<?php echo $dado_jogo['id']; ?>/index.html?<?php echo $cod_aluno; ?>">
+	      <?php echo $dado_jogo['nome']; ?></a></td>
+	    <td>Descricao do jogo</td>
     </tr>
+    <?php } ?>
   </table>
 </body>
 </html>
