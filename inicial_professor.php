@@ -4,8 +4,6 @@
 $nome_sala = $_POST['nome_sala'];
 //recebe o cookie referente ao email enviado pela página login.php
 $email = $_COOKIE['email'];
-//exclui o cookie recebido
-unset($_COOKIE['email']);
 
 //cria a conexão
 $connect = mysqli_connect('localhost','root','admin');
@@ -27,25 +25,46 @@ if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null) {
 		          .href='inicial_professor_view.php'</script>";
 	die();
 } else{	
-	//cria a query para criar uma nova sala
-	$query = "INSERT INTO sala (nome,professor_id) VALUES ('$nome_sala',$id_professor)";
-	//a variável $insert recebe o resultado (true ou false) da inserção
-	$insert = mysqli_query($connect,$query);
-	
-	//cria a query para obter o id da sala
-	$query_select_sala = "SELECT id FROM sala WHERE nome='$nome_sala'";
-	//a variável $select_sala recebe o resultado da execução da query
+	//criada a query para verificar se existe alguma sala desse professor com o mesmo nome
+	$query_select_sala = "SELECT * FROM sala WHERE nome = '$nome_sala'";
+	//a variável $select_sala recebe o resultado da execução dessa query
 	$select_sala = mysqli_query($connect,$query_select_sala);
-	//o array $array_sala recebe os valores retornados
+	//o array $array_sala recebe todos os valores da busca
 	$array_sala = mysqli_fetch_array($select_sala);
-	//a variável $id_sala recebe o valor do array corresponde ao id
-	$id_sala = $array_sala['id'];
+	//o array $nome_sala_array recebe os nomes retornados na busca, se ele não encontrar nome igual,
+	//não vai retornar nenhum índice
+	$nome_sala_array = $array_sala['nome'];
 	
-	//cria um registro na tabela sala_jogo paracada jogo selecionado pelo professor
-	foreach($_POST['check_list'] as $selected) {
-		//cria a query para cadastrar o jogo e a sala na tabela sala_jogo
-		$query_insert_sala_jogo = "INSERT INTO sala_jogo (sala_id,jogo_id) VALUES ($id_sala,$selected)";
-		$insert_sala_jogo = mysqli_query($connect,$query_insert_sala_jogo);
+	// se encontrar alguma sala com nome igual retorna para a página inicial do professor	
+	if($nome_sala_array == $nome_sala){
+		echo"<script language='javascript' type='text/javascript'>
+		          alert('Essa sala já existe');window.location
+		          .href='inicial_professor_view.php'</script>";
+		die();
+	//fazer o cadastro da sala
+	} else {
+		//exclui o cookie recebido
+		unset($_COOKIE['email']);
+		//cria a query para criar uma nova sala
+		$query = "INSERT INTO sala (nome,professor_id) VALUES ('$nome_sala',$id_professor)";
+		//a variável $insert recebe o resultado (true ou false) da inserção
+		$insert = mysqli_query($connect,$query);
+		
+		//cria a query para obter o id da sala
+		$query_select_sala = "SELECT id FROM sala WHERE nome='$nome_sala'";
+		//a variável $select_sala recebe o resultado da execução da query
+		$select_sala = mysqli_query($connect,$query_select_sala);
+		//o array $array_sala recebe os valores retornados
+		$array_sala = mysqli_fetch_array($select_sala);
+		//a variável $id_sala recebe o valor do array corresponde ao id
+		$id_sala = $array_sala['id'];
+		
+		//cria um registro na tabela sala_jogo paracada jogo selecionado pelo professor
+		foreach($_POST['check_list'] as $selected) {
+			//cria a query para cadastrar o jogo e a sala na tabela sala_jogo
+			$query_insert_sala_jogo = "INSERT INTO sala_jogo (sala_id,jogo_id) VALUES ($id_sala,$selected)";
+			$insert_sala_jogo = mysqli_query($connect,$query_insert_sala_jogo);
+		}
 	}
 	
 	//se a inserção tiver ocorrido
