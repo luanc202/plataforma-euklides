@@ -69,7 +69,7 @@ if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null) {
 	
 	//se a inserção tiver ocorrido
 	if($insert){
-		//emite a mensagem, encaminha para a página sala.php e coloca com parâmetro o nome da sala
+		//emite a mensagem, encaminha para a página sala.php e coloca com parâmetro o nome da sala e o id do professor
 		echo"<script language='javascript' type='text/javascript'>
 				alert('Sala cadastrada com sucesso!');";
 		echo "javascript:window.location='sala.php?nome=".$nome_sala."&cod_prof=".$id_professor."';</script>";
