@@ -26,7 +26,7 @@ if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null) {
 	die();
 } else{	
 	//criada a query para verificar se existe alguma sala desse professor com o mesmo nome
-	$query_select_sala = "SELECT * FROM sala WHERE nome = '$nome_sala'";
+	$query_select_sala = "SELECT * FROM sala WHERE nome = '$nome_sala' AND professor_id = '$id_professor'";
 	//a variável $select_sala recebe o resultado da execução dessa query
 	$select_sala = mysqli_query($connect,$query_select_sala);
 	//o array $array_sala recebe todos os valores da busca
