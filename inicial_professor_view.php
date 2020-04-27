@@ -9,7 +9,7 @@
 	$db = mysqli_select_db($connect,'euklides');
 	
 	//seleciona o nome de todas as salas criadas pelo professor do email recebido
-	$query_select_salas = "SELECT s.nome FROM sala s, professor p WHERE p.email = '$email'
+	$query_select_salas = "SELECT s.nome, p.id FROM sala s, professor p WHERE p.email = '$email'
 						AND s.professor_id = p.id";
 	//a variável $con recebe o resultado da execução da query
 	$salas      = mysqli_query($connect,$query_select_salas);
@@ -38,11 +38,12 @@
     //enquanto houver índices vai ser criado uma tupla na tabela do html 
     while($dado = $salas->fetch_array()) { ?>
     <tr>
-      <td><a href="sala.php?nome=<?php echo $dado['nome']; ?>"><?php echo $dado['nome']; ?></a></td>
+      <td><a href="sala.php?nome=<?php echo $dado['nome']; ?>&cod_prof=<?php echo $dado['id']; ?>">
+      <?php echo $dado['nome']; ?></a></td>
       <td>
         <a href="inicial_professor_view.php">Editar</a>
         <a href="inicial_professor_view.php">Excluir</a>
-        <a href="cadastro_view.php?nome=<?php echo $dado['nome']; ?>">URL</a>
+        <a href="cadastro_view.php?nome=<?php echo $dado['nome']; ?>&cod_prof=<?php echo $dado['id']; ?>">URL</a>
       </td>
     </tr>
     <?php } ?>

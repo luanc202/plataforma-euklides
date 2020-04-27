@@ -9,6 +9,7 @@
 //são coletados os cookies enviados da cadastro_view.php
 $existe_sala = $_COOKIE['existe_sala'];
 $sala = $_COOKIE['sala'];
+$id_professor = $_COOKIE['cod_prof'];
 //os cookies são deletados para que possam receber novos valores a cada cadastro
 unset($_COOKIE['existe_sala'], $_COOKIE['sala']);
 
@@ -73,7 +74,7 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 		if ($existe_sala == 1){
 			//como há uma sala, é necessário descobrir o id dessa sala
 			//para isso, é feito um select com o nome da sala para descobrir o id
-			$query_select_sala = "SELECT id FROM sala WHERE nome = '$sala'";
+			$query_select_sala = "SELECT id FROM sala WHERE nome = '$sala' AND professor_id = '$id_professor'";
 			//a variável $select_sala recebe o resultado da execução da query
 			$select_sala = mysqli_query($connect,$query_select_sala);
 			//o array $array_sala recebe os valores retornados
