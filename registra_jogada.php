@@ -17,7 +17,7 @@ $num_erros = $_POST["num_erros"];
 $level = $_POST["level"];
 
 $query = "INSERT INTO `jogada` (`tempo_gasto`,`num_dicas`,`num_acertos`,`num_erros`,`level`,`aluno_id`,`sala_id`,`jogo_id`) 
-VALUES ($tempo_gasto,$num_dicas,$num_acertos,$num_erros,$level,$cod_aluno,$cod_sala,$cod_jogo);";
+VALUES ($tempo_gasto,$num_dicas,$num_acertos,$num_erros,'$level',$cod_aluno,$cod_sala,$cod_jogo);";
 //a variável $insert recebe o resultado da execução da query
 $insert = mysqli_query($con,$query) or die("2: Insert failed");
 
