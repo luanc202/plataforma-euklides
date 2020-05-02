@@ -24,7 +24,7 @@ if (isset($entrar)) {
 	if (mysqli_num_rows($verifica_professor)<=0 && mysqli_num_rows($verifica_aluno)<=0){
 		echo"<script language='javascript' type='text/javascript'>
         alert('Email e/ou senha incorretos');window.location
-        .href='index.php';</script>";
+        .href='index.php?acao=login';</script>";
 		die();
 		//se o número de linhas da variável $verifica_professor for maior que zero significa que há um professor
 	}else if (mysqli_num_rows($verifica_professor)>0){
