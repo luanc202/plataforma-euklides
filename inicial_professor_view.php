@@ -43,7 +43,7 @@
       <td>
         <a href="inicial_professor_view.php">Editar</a>
         <a href="inicial_professor_view.php">Excluir</a>
-        <a href="cadastro_view.php?nome=<?php echo $dado['nome']; ?>&cod_prof=<?php echo $dado['id']; ?>">URL</a>
+        <a href="index.php?nome=<?php echo $dado['nome']; ?>&cod_prof=<?php echo $dado['id']; ?>">URL</a>
       </td>
     </tr>
     <?php } ?>

@@ -51,7 +51,7 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 	//cadastro.view
 	echo"<script language='javascript' type='text/javascript'>
 		          alert('Todos os campos devem ser preenchidos');window.location
-		          .href='cadastro_view.php'</script>";
+		          .href='index.php?acao=cadastro'</script>";
 	die();
 
 //verifica se o email inserido já foi cadastrado no banco
@@ -59,14 +59,14 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 	if($email_aluno_array == $email || $email_professor_array == $email){
 		echo"<script language='javascript' type='text/javascript'>
 		          alert('Esse login já existe');window.location
-		          .href='cadastro_view.php'</script>";
+		          .href='index.php?acao=cadastro'</script>";
 		die();
 		
 	//verifica se as senhas digitadas são iguais
 	}else if (strcmp($senha,$rsenha) != 0){
 		echo"<script language='javascript' type='text/javascript'>
 		          alert('Senhas não coincidem');window.location
-		          .href='cadastro_view.php'</script>";
+		          .href='index.php?acao=cadastro'</script>";
 		die();
 	//se não houver nenhum erro, deve prosseguir para o cadastro dos dados
 	}else{
@@ -91,12 +91,12 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 				//se tiver sido um sucesso, aparecer a mensagem o usuário será encaminhado para o login
 				echo"<script language='javascript' type='text/javascript'>
 		          alert('Aluno cadastrado com sucesso!');window.location.
-		          href='login.html'</script>";
+		          href='index.php'</script>";
 			}else{
 				//se tiver sido uma falha, aparecer a mensagem o usuário será encaminhado para o cadastro novamente
 				echo"<script language='javascript' type='text/javascript'>
 		          alert('Não foi possível cadastrar esse aluno');window.location
-		          .href='cadastro_view.php'</script>";
+		          .href='index.php?acao=cadastro'</script>";
 			}
 		//se não houver uma sala na URL, significa que quem está sendo cadastrado é um professor
 		} else {
@@ -109,12 +109,12 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 			if($insert){
 				echo"<script language='javascript' type='text/javascript'>
 		          alert('Professor cadastrado com sucesso!');window.location.
-		          href='login.html'</script>";
+		          href='index.php'</script>";
 			//se tiver sido uma falha, aparecer a mensagem o usuário será encaminhado para o cadastro novamente
 			}else{
 				echo"<script language='javascript' type='text/javascript'>
 		          alert('Não foi possível cadastrar esse professor');window.location
-		          .href='cadastro_view.php'</script>";
+		          .href='index.php?acao=cadastro'</script>";
 			}
 		}
 		
