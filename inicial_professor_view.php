@@ -52,7 +52,7 @@
 	<label>Nome da sala:</label><input type="text" name="nome_sala" id="nome_sala"><br>
 	<label>Objetos de aprendizagem</label>
 	<?php
-	//enquanto houver jogos cadastrados, é criado um checkbox
+	//enquanto houver jogos cadastrados no banco, é criado um checkbox
 	while($dado_jogo = $jogos->fetch_array()) { ?>
 		<input type="checkbox" id="<?php echo $dado_jogo['id']; ?>" name="check_list[]" 
 				value="<?php echo $dado_jogo['id']; ?>">

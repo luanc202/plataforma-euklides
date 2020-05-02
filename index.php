@@ -33,27 +33,34 @@ include 'header.php';
 		</form>
 	</div>
 	<?php 
+		//verifica se há um parâmetro nome na url, o que significa que um aluno está fazendo CADASTRO
 		if (isset($_GET['nome'])){
+			//esconde o formulário do login e mostra o formulário do cadastro
 			?>
 			<script type='text/javascript'>
 				document.getElementById("form_login").style.visibility = 'hidden';
 				document.getElementById("form_cadastro").style.visibility = 'visible';
 			</script>
 			<?php 
+			//verifica se há o parâmetro ação na url e é igual a cadastro
 		} else if ($_GET['acao'] == 'cadastro'){
+			//esconde o formulário do login e mostra o formulário do cadastro
 			?>
 			<script type='text/javascript'>
 				document.getElementById("form_login").style.visibility = 'hidden';
 				document.getElementById("form_cadastro").style.visibility = 'visible';
 			</script>
 			<?php 
+			//verifica se há o parâmetro ação na url e é igual a login
 		} else if ($_GET['acao'] == 'login'){
+			//esconde o formulário do cadastro e mostra o formulário do login
 			?>
 			<script type='text/javascript'>
 				document.getElementById("form_login").style.visibility = 'visible';
 				document.getElementById("form_cadastro").style.visibility = 'hidden';
 			</script>
 			<?php 
+			//qualquer outro jeito, mostra o login que é a forma padrão
 		} else {
 			?>
 			<script type='text/javascript'>

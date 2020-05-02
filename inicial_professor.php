@@ -61,9 +61,15 @@ if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null) {
 		
 		//cria um registro na tabela sala_jogo paracada jogo selecionado pelo professor
 		foreach($_POST['check_list'] as $selected) {
-			//cria a query para cadastrar o jogo e a sala na tabela sala_jogo
-			$query_insert_sala_jogo = "INSERT INTO sala_jogo (sala_id,jogo_id) VALUES ($id_sala,$selected)";
-			$insert_sala_jogo = mysqli_query($connect,$query_insert_sala_jogo);
+			
+			//criada a query para verificar se já exite um registro sala_jogo com esses dados
+			$query_select_sala = "SELECT * FROM sala_jogo WHERE sala_id = $id_sala AND jogo_id = $selected";
+			//se não voltar nennhum registro (número de linhas menor igual a zero zero) cadastra
+			if (mysqli_num_rows($query_select_sala)<=0) {
+				//cria a query para cadastrar o jogo e a sala na tabela sala_jogo
+				$query_insert_sala_jogo = "INSERT INTO sala_jogo (sala_id,jogo_id) VALUES ($id_sala,$selected)";
+				$insert_sala_jogo = mysqli_query($connect,$query_insert_sala_jogo);
+			}		
 		}
 	}
 	
