@@ -12,23 +12,30 @@ include 'header.php';
 <body>
 	<p class=margin_form></p>
 	<form class="form_buttons" method="POST">
-		<input type="submit" value="Login" id="button_login" class="button_login" name="button_login"><br>
-		<input type="submit" value="Cadastro" id="button_cadastro" class="button_cadastro" name="button_cadastro"><br>
+		<input type="submit" value="Entrar" id="button_login" class="button_login" name="button_login"><br>
+		<input type="submit" value="Criar Conta" id="button_cadastro" class="button_cadastro" name="button_cadastro"><br>
 	</form>
-	<p class=margin_buttons></p>
 	<div class="div_login_cadastro">
 		<form id="form_login" class="form_login" method="POST" action="login.php">
-			<label>Email: </label><input type="text" name="email" id="email"><br>
-			<label>Senha:</label><input type="password" name="senha" id="senha"><br>
+			<p class=margin_campos></p>
+			<label>E-mail</label><br><input class="campo" type="text" name="email" id="email"><br>
+			<p class=margin_labels></p>
+			<label>Senha</label><br><input class="campo" type="password" name="senha" id="senha"><br>
+			<p class=margin_campos></p>
 			<input type="submit" value="Entrar" id="entrar" name="entrar"><br>
 			<!-- <a href="recuperar_senha.html">esqueci a senha</a> -->
 			<!-- <a href="cadastro_view.php">Cadastre-se</a>-->
 		</form>
 		<form id="form_cadastro" class="form_cadastro" method="POST" action="cadastro.php">
-			<label>Nome:</label><input type="text" name="nome" id="nome"><br>
-			<label>Email: </label><input type="text" name="email" id="email"><br>
-			<label>Senha:</label><input type="password" name="senha" id="senha"><br>
-			<label>Confirmar a senha:</label><input type="password" name="rsenha" id="rsenha"><br>
+			<p class=margin_campos></p>
+			<label>Nome</label><br><input class="campo" type="text" name="nome" id="nome"><br>
+			<p class=margin_labels></p>
+			<label>E-mail</label><br><input class="campo" type="text" name="email" id="email"><br>
+			<p class=margin_labels></p>
+			<label>Senha</label><br><input class="campo" type="password" name="senha" id="senha"><br>
+			<p class=margin_labels></p>
+			<label>Confirmar a senha</label><br><input class="campo" type="password" name="rsenha" id="rsenha"><br>
+			<p class=margin_campos></p>
 			<input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar"><br>
 		</form>
 	</div>
