@@ -14,6 +14,7 @@ body {
   	position: relative;
   	top: -2px;
   	border: 1px solid black;
+  	box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
 }
 
 .form_cadastro {
@@ -22,6 +23,7 @@ body {
   	position: relative;
   	top: -185px;
   	border: 1px solid black;
+  	box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
 }
 
 .margin_form {
@@ -40,6 +42,7 @@ body {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	width: 50%;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
 }
 
 .button_cadastro {
@@ -47,6 +50,7 @@ body {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	width: 50%;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
 }
 
 #entrar {

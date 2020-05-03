@@ -1,7 +1,11 @@
 <?php
 
 //caso o professor tenha criado uma nova sala, a variável $nome_sala irá receber o nome digitado
-$nome_sala = $_POST['nome_sala'];
+$nome_sala = $_POST['input_nome_sala'];
+//caso o professor tenha criado uma nova sala, a variável $descricao irá receber a descrição digitado
+$descricao = $_POST['input_descricao'];
+//caso o professor tenha criado uma nova sala, a variável $disciplina irá receber a disciplina digitado
+$disciplina = $_POST['input_disciplina'];
 //recebe o cookie referente ao email enviado pela página login.php
 $email = $_COOKIE['email'];
 
@@ -19,7 +23,8 @@ $array_professor = mysqli_fetch_array($select_professor);
 //a variável $id_professor recebe o id do professor
 $id_professor = $array_professor['id'];
 
-if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null) {
+if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null|| $descricao == "" || $descricao == null
+		|| $disciplina == "" || $disciplina == null) {
 	echo"<script language='javascript' type='text/javascript'>
 		          alert('Todos os campos devem ser preenchidos');window.location
 		          .href='inicial_professor_view.php'</script>";
@@ -46,7 +51,8 @@ if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null) {
 		//exclui o cookie recebido
 		unset($_COOKIE['email']);
 		//cria a query para criar uma nova sala
-		$query = "INSERT INTO sala (nome,professor_id) VALUES ('$nome_sala',$id_professor)";
+		$query = "INSERT INTO sala (nome,professor_id,descricao,disciplina) VALUES 
+					('$nome_sala',$id_professor,'$descricao','$disciplina')";
 		//a variável $insert recebe o resultado (true ou false) da inserção
 		$insert = mysqli_query($connect,$query);
 		
