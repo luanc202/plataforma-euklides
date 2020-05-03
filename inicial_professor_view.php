@@ -1,7 +1,7 @@
 <?php
 //https://zerobugs.com.br/ver-post/exibir-dadosregistros-do-banco-de-dados-mysql-com-php/
 
-	include 'header.php';
+//	include 'navigation_bar.php';
 
 	//recebe o email do professor como cookie da página login.php
 	$email = $_COOKIE['email'];
