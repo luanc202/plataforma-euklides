@@ -2,9 +2,9 @@
 
 //caso o professor tenha criado uma nova sala, a variável $nome_sala irá receber o nome digitado
 $nome_sala = $_POST['input_nome_sala'];
-//caso o professor tenha criado uma nova sala, a variável $descricao irá receber a descrição digitado
+//caso o professor tenha criado uma nova sala, a variável $descricao irá receber a descrição digitada
 $descricao = $_POST['input_descricao'];
-//caso o professor tenha criado uma nova sala, a variável $disciplina irá receber a disciplina digitado
+//caso o professor tenha criado uma nova sala, a variável $disciplina irá receber a disciplina digitada
 $disciplina = $_POST['input_disciplina'];
 //recebe o cookie referente ao email enviado pela página login.php
 $email = $_COOKIE['email'];
@@ -23,7 +23,7 @@ $array_professor = mysqli_fetch_array($select_professor);
 //a variável $id_professor recebe o id do professor
 $id_professor = $array_professor['id'];
 
-if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null|| $descricao == "" || $descricao == null
+if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null
 		|| $disciplina == "" || $disciplina == null) {
 	echo"<script language='javascript' type='text/javascript'>
 		          alert('Todos os campos devem ser preenchidos');window.location

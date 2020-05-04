@@ -83,6 +83,7 @@ include 'header.php';
 <?php
 
 if(isset($_POST["button_login"])){
+	//se for selecionado o botão de cadastro, o formulário do cadastro é escondido
 	?>
 	<script type='text/javascript'>
 		document.getElementById("form_login").style.visibility = 'visible';
@@ -92,32 +93,34 @@ if(isset($_POST["button_login"])){
 }
 
 if(isset($_POST["button_cadastro"])){
-	//verifica se há o parâmetro sala na url
-	if (isset($_GET['nome'])){
-		//se existir, a variável existe_sala recebe 1
-		$existe_sala = isset($_GET['nome']);
-		//se existir, a variável nome_sala eid_professor recebe os valores que estão na url
-		$nome_sala = $_GET['nome'];
-		$id_professor = $_GET['cod_prof'];
-		// 	session_start();
-		// 	$_SESSION['existe_sala'] = $existe_sala;
-		// 	$_SESSION['sala'] = $sala;
-		//se existir, as variáveis são enviadas como cookies
-		setcookie("existe_sala",$existe_sala);
-		setcookie("sala",$nome_sala);
-		setcookie("cod_prof",$id_professor);
-	}else {
-		//se não existir, são enviados os valores 0 e espaço
-		setcookie("existe_sala",0);
-		setcookie("sala","");
-		setcookie("cod_prof",0);
-	}
+	//se for selecionado o botão de cadastro, o formulário do login é escondido
 	?>
 	<script type='text/javascript'>
 		document.getElementById("form_login").style.visibility = 'hidden';
 		document.getElementById("form_cadastro").style.visibility = 'visible';
 	</script>
 	<?php
+}
+
+//verifica se há o parâmetro sala na url
+if (isset($_GET['nome'])){
+	//se existir, a variável existe_sala recebe 1
+	$existe_sala = isset($_GET['nome']);
+	//se existir, a variável nome_sala eid_professor recebe os valores que estão na url
+	$nome_sala = $_GET['nome'];
+	$id_professor = $_GET['cod_prof'];
+	// 	session_start();
+	// 	$_SESSION['existe_sala'] = $existe_sala;
+	// 	$_SESSION['sala'] = $sala;
+	//se existir, as variáveis são enviadas como cookies
+	setcookie("existe_sala",$existe_sala);
+	setcookie("sala",$nome_sala);
+	setcookie("cod_prof",$id_professor);
+}else {
+	//se não existir, são enviados os valores 0 e espaço
+	setcookie("existe_sala",0);
+	setcookie("sala","");
+	setcookie("cod_prof",0);
 }
 
 ?>

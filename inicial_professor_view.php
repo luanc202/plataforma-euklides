@@ -100,13 +100,14 @@
 		</script>
 	  	
 	  	<?php 
+	  	//enquanto houver salas, são criada as divs
 	  	while($dado_sala = $salas->fetch_array()) {?>
 	  	<div class="div_sala">
 	  		<a href="sala.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['id']; ?>">
 	  			<img class="imagem_sala" src="imgs/teste.jpg" alt="some text" ></a>
 	  		<a href="sala.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['id']; ?>">
 	  		<p class="nome_sala"><?php echo $dado_sala['nome']; ?></p></a>
-	  		<p class="descricao"><?php echo $dado_sala['descricao']; ?></p>
+	  		<p class="descricao"><?php if ($dado_sala['descricao'] != null) echo $dado_sala['descricao']; ?></p>
 	  	</div>
 		<?php } ?>
 	</div>
