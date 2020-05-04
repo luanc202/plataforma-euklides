@@ -1,4 +1,5 @@
 <?php
+include 'header.php';
 //recebe o email do aluno como cookie da página login.php
 $email = $_COOKIE['email'];
 //exclui o cookie recebido
@@ -21,9 +22,6 @@ $nome_sala = $array_aluno['nome'];
 $cod_aluno = $array_aluno['id'];
 $cod_sala = $array_aluno['sala_id'];
 
-//apenas emite uma mensagem de qual sala o aluno está
-echo '<p>Voce esta na sala '.$nome_sala.'</p>';
-
 //seleciona os jogos disponíveis na sala
 $query_select_jogo = "SELECT j.id, j.nome FROM jogo j, sala s, sala_jogo sj 
 WHERE s.id = '$cod_sala' AND s.id = sj.sala_id AND j.id = sj.jogo_id";
@@ -34,24 +32,27 @@ $select_jogo = mysqli_query($connect,$query_select_jogo);
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Salas</title>
+  <title>Meus jogos</title>
+  <link rel="stylesheet" type="text/css" href="css/inicial_aluno.css">
 </head>
 <body>
-  <table border="1">
-    <tr>
-      <td>Jogo</td>
-      <td>Descricao</td>
-    </tr>
-        <?php
-	//enquanto houver jogos cadastrados, é mostrado cada um na tabela
-    while($dado_jogo = $select_jogo->fetch_array()) { ?>
-    <tr>
-	    <td>
-	      <a href="<?php echo $dado_jogo['id']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
-	      <?php echo $dado_jogo['nome']; ?></a></td>
-	    <td>Descricao do jogo</td>
-    </tr>
-    <?php } ?>
-  </table>
+
+	<div class="div_dash">
+		<h4>Inicio</h4>
+		<h2><?php echo $nome_sala; ?></h2>
+	  	
+	  	<?php 
+	  	//enquanto houver salas, são criada as divs
+	  	while($dado_jogo = $select_jogo->fetch_array()) {?>
+	  	<div class="div_jogo">
+	  		<a href="<?php echo $dado_jogo['id']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
+	  			<img class="imagem_jogo" src="imgs/jogo.jpg" alt="some text" ></a>
+	  		<a href="<?php echo $dado_jogo['id']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
+	  		<p class="nome_jogo"><?php echo $dado_jogo['nome']; ?></p></a>
+	  	</div>
+		<?php } ?>
+		
+	</div>
+	
 </body>
 </html>

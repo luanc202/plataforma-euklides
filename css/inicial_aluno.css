@@ -1,0 +1,48 @@
+.div_dash {
+  background-color: rgba(0,0,0,0);
+  padding-top: 50px;
+  padding-right: 80px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+}
+
+h4 {
+	background-color: rgba(0,0,0,0.05);
+	padding: 10px;
+	margin: 10px;
+}
+
+h2 {
+	padding: 10px;
+	margin: 10px;
+}
+
+.div_jogo {
+	width: 15%;
+	height: 200px;
+	margin: 25px;
+	float: left;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+}
+
+.imagem_jogo {
+	width: 100%;
+	margin-left: 0%;
+	margin-right: 0%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	display: flex;
+  	align-items: center;
+  	justify-content: center; 
+}
+
+.nome_jogo {
+	margin-left: 10%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	font-weight: bold;
+	font-size: 110%;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: rgba(0,0,0,0.7);
+}

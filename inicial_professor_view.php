@@ -32,7 +32,7 @@
 </head>
 <body>
 	<div class="div_dash">
-		<h4>Inicio > Minhas Salas</h4>
+		<h4>Inicio</h4>
 		<h2>Salas</h2>
 		
 		<div class="div_sala">
@@ -48,13 +48,13 @@
 		    <span class="close">&times;</span>
 		    <form method="POST" action="inicial_professor.php">
 			    <h4>Nova sala</h4>
-			    <label class="labels">Nome*</label><br>
+			    <label class="labels">Nome</label><br>
 			    <input class="campo" type="text" name="input_nome_sala" id="input_nome_sala"><br>
 				<p class=margin_labels></p>
-				<label class="labels">Disciplina*</label><br>
+				<label class="labels">Disciplina</label><br>
 				<input class="campo" type="text" name="input_disciplina" id="input_disciplina"><br>
 				<p class=margin_labels></p>
-				<label class="labels">Descrição</label><br>
+				<label class="labels">Descrição (opcional)</label><br>
 				<input class="campo" type="text" name="input_descricao" id="input_descricao"><br>
 				<p class=margin_labels></p>
 				<label class="labels">Objetos de aprendizagem*</label>
@@ -104,7 +104,7 @@
 	  	while($dado_sala = $salas->fetch_array()) {?>
 	  	<div class="div_sala">
 	  		<a href="sala.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['id']; ?>">
-	  			<img class="imagem_sala" src="imgs/teste.jpg" alt="some text" ></a>
+	  			<img class="imagem_sala" src="imgs/sala.jpg" alt="some text" ></a>
 	  		<a href="sala.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['id']; ?>">
 	  		<p class="nome_sala"><?php echo $dado_sala['nome']; ?></p></a>
 	  		<p class="descricao"><?php if ($dado_sala['descricao'] != null) echo $dado_sala['descricao']; ?></p>
