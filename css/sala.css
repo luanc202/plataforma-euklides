@@ -1,0 +1,137 @@
+body {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.div_dash {
+  background-color: rgba(0,0,0,0);
+  padding-top: 50px;
+  padding-right: 80px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+}
+
+h4 {
+	background-color: rgba(0,0,0,0.05);
+	.padding: 10px;
+	margin: 10px;
+}
+
+h2 {
+	padding: 10px;
+	margin: 10px;
+}
+
+h3 {
+	padding: 10px;
+	margin: 10px;
+}
+
+.p_link {	
+	float: left;
+	padding: 10px;
+	margin: 10px;
+}
+
+.div_link {
+	display: flex;
+	margin: auto;
+}
+
+.copiar_imagem {
+	float: left;
+	width: 17px;
+	height: 19px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.div_buttons {
+	display: flex;
+	background-color: rgba(0,0,0,0.05);
+	width: 60%;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.button_jogos {
+	float: left;
+	width: 33.3%;
+	padding: 15px;
+}
+
+.button_alunos {
+	float: left;
+	width: 33.3%;
+	padding: 15px;
+}
+
+.button_gerenciar {
+	float: left;
+	width: 33.3%;
+	padding: 15px;
+}
+
+.div_jogos {
+	background-color: rgba(0,0,0,0.05);
+	width: 100%;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.div_jogo {
+	width: 15%;
+	height: 200px;
+	margin: 25px;
+	float: left;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.5)
+}
+
+.nome_jogo {
+	margin-left: 10%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	font-weight: bold;
+	font-size: 110%;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: rgba(0,0,0,0.7);
+}
+
+.imagem_jogo {
+	width: 100%;
+	height: 60%;
+	margin-left: 0%;
+	margin-right: 0%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	display: flex;
+  	align-items: center;
+  	justify-content: center; 
+}
+
+.deletar_jogo {
+	width: 30px;
+	height: 30px;
+	margin:0 auto;
+    display:block;
+}
+
+.div_novo_jogo {
+	width: 15%;
+	height: 200px;
+	margin: 25px;
+	float: left;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+}
+
+.imagem_novo_jogo {
+	widht: 100%;
+	height: 100%;
+	margin-left: 0%;
+	margin-right: 0%;
+	margin-top: 0%;
+	margin-bottom: 0%;
+}

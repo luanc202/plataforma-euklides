@@ -34,6 +34,18 @@
 	<div class="div_dash">
 		<h4>Inicio</h4>
 		<h2>Salas</h2>
+	  	
+	  	<?php 
+	  	//enquanto houver salas, são criada as divs
+	  	while($dado_sala = $salas->fetch_array()) {?>
+	  	<div class="div_sala">
+	  		<a href="sala_view.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['id']; ?>">
+	  			<img class="imagem_sala" src="imgs/sala.png" alt="some text" ></a>
+	  		<a href="sala_view.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['id']; ?>">
+	  		<p class="nome_sala"><?php echo $dado_sala['nome']; ?></p></a>
+	  		<p class="descricao"><?php if ($dado_sala['descricao'] != null) echo $dado_sala['descricao']; ?></p>
+	  	</div>
+		<?php } ?>
 		
 		<div class="div_sala">
 			<input type="image" class="imagem_nova_sala" id="imagem_nova_sala"
@@ -98,18 +110,7 @@
 		  }
 		}
 		</script>
-	  	
-	  	<?php 
-	  	//enquanto houver salas, são criada as divs
-	  	while($dado_sala = $salas->fetch_array()) {?>
-	  	<div class="div_sala">
-	  		<a href="sala.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['id']; ?>">
-	  			<img class="imagem_sala" src="imgs/sala.jpg" alt="some text" ></a>
-	  		<a href="sala.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['id']; ?>">
-	  		<p class="nome_sala"><?php echo $dado_sala['nome']; ?></p></a>
-	  		<p class="descricao"><?php if ($dado_sala['descricao'] != null) echo $dado_sala['descricao']; ?></p>
-	  	</div>
-		<?php } ?>
+		
 	</div>
 </body>
 </html>
