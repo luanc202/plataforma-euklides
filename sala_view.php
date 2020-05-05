@@ -121,7 +121,6 @@ if (isset($_POST['deletar_jogo'])) {
 	foreach ($_POST['deletar_jogo'] as $cod_jogo){
 		$query_deletar = "DELETE FROM sala_jogo WHERE sala_id = $cod_sala AND jogo_id = $cod_jogo";
 		$delete = mysqli_query($connect,$query_deletar);
-		header("Refresh:0");
 	}
 }
 
