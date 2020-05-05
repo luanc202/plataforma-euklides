@@ -74,13 +74,13 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 		if ($existe_sala == 1){
 			//como há uma sala, é necessário descobrir o id dessa sala
 			//para isso, é feito um select com o nome da sala para descobrir o id
-			$query_select_sala = "SELECT id FROM sala WHERE nome = '$sala' AND professor_id = '$id_professor'";
+			$query_select_sala = "SELECT cod_sala FROM sala WHERE nome = '$sala' AND professor_id = '$id_professor'";
 			//a variável $select_sala recebe o resultado da execução da query
 			$select_sala = mysqli_query($connect,$query_select_sala);
 			//o array $array_sala recebe os valores retornados
 			$array_sala = mysqli_fetch_array($select_sala);
 			//a variável $id_sala recebe o valor do array corresponde ao id
-			$id_sala = $array_sala['id'];
+			$id_sala = $array_sala['cod_sala'];
 			
 			//query para ser inserido na tabela aluno, incluindo a sala em que ele está
 			$query = "INSERT INTO aluno (nome,email,senha,sala_id) VALUES ('$nome','$email','$senha',$id_sala)";

@@ -11,8 +11,8 @@
 	$db = mysqli_select_db($connect,'euklides');
 	
 	//seleciona o nome de todas as salas criadas pelo professor do email recebido
-	$query_select_salas = "SELECT s.nome, p.id, s.descricao FROM sala s, professor p WHERE p.email = '$email'
-						AND s.professor_id = p.id";
+	$query_select_salas = "SELECT s.nome, p.cod_professor, s.descricao FROM sala s, professor p WHERE p.email = '$email'
+						AND s.professor_id = p.cod_professor";
 	//a variável $con recebe o resultado da execução da query
 	$salas      = mysqli_query($connect,$query_select_salas);
 	
@@ -39,9 +39,9 @@
 	  	//enquanto houver salas, são criada as divs
 	  	while($dado_sala = $salas->fetch_array()) {?>
 	  	<div class="div_sala">
-	  		<a href="sala_view.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['id']; ?>">
+	  		<a href="sala_view.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['cod_professor']; ?>">
 	  			<img class="imagem_sala" src="imgs/sala.png" alt="some text" ></a>
-	  		<a href="sala_view.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['id']; ?>">
+	  		<a href="sala_view.php?nome=<?php echo $dado_sala['nome']; ?>&cod_prof=<?php echo $dado_sala['cod_professor']; ?>">
 	  		<p class="nome_sala"><?php echo $dado_sala['nome']; ?></p></a>
 	  		<p class="descricao"><?php if ($dado_sala['descricao'] != null) echo $dado_sala['descricao']; ?></p>
 	  	</div>
@@ -73,9 +73,9 @@
 				<?php
 				//enquanto houver jogos cadastrados no banco, é criado um checkbox
 				while($dado_jogo = $jogos->fetch_array()) { ?>
-					<br /><input class="labels" type="checkbox" id="<?php echo $dado_jogo['id']; ?>" name="check_list[]" 
-							value="<?php echo $dado_jogo['id']; ?>">
-			  		<label for="<?php echo $dado_jogo['id']; ?>"> <?php echo $dado_jogo['nome']; ?></label><br />
+					<br /><input class="labels" type="checkbox" id="<?php echo $dado_jogo['cod_jogo']; ?>" name="check_list[]" 
+							value="<?php echo $dado_jogo['cod_jogo']; ?>">
+			  		<label for="<?php echo $dado_jogo['cod_jogo']; ?>"> <?php echo $dado_jogo['nome']; ?></label><br />
 				<?php } ?>
 				<input type="submit" value="Criar sala" id="nova_sala" name="nova_sala">
 	  		</form>

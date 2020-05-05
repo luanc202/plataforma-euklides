@@ -16,13 +16,16 @@ if (isset($_GET['nome'])){
 	$link = "http://localhost/euklides/plataforma-euklides/index.php?nome=$nome_sala&cod_prof=$id_professor";
 	
 	//cria a query para verificar quais jogos há na sala
-	$query_select_jogo = "SELECT j.id, j.nome FROM jogo j, sala s, sala_jogo sj
-	WHERE s.nome = '$nome_sala' AND s.id = sj.sala_id AND j.id = sj.jogo_id";
+	$query_select_jogo = "SELECT s.cod_sala, j.cod_jogo, j.nome FROM jogo j, sala s, sala_jogo sj
+	WHERE s.nome = '$nome_sala' AND s.cod_sala = sj.sala_id AND j.cod_jogo = sj.jogo_id";
 	//a variável $jogos recebe o resultado da execução da query
 	$jogos 		 = mysqli_query($connect,$query_select_jogo);
+	$array_jogos = mysqli_fetch_array($jogos);
+	$cod_jogo = $array_jogos['cod_jogo'];
+	$cod_sala = $array_jogos['cod_sala'];
 		
 	//cria a query para verificar quais alunos estão na sala
-	$query_alunos = "SELECT a.id, a.nome FROM sala s, aluno a WHERE a.sala_id = s.id AND s.nome = '$nome_sala'";
+	$query_alunos = "SELECT a.cod_aluno, a.nome FROM sala s, aluno a WHERE a.sala_id = s.cod_sala AND s.nome = '$nome_sala'";
 	//a variável $alunos recebe o resultado da execução da query
 	$alunos       = mysqli_query($connect,$query_alunos);
 	
@@ -68,25 +71,36 @@ if (isset($_GET['nome'])){
 		
 		</script>
 		
-		<div class="div_buttons">
+		<form class="div_buttons" id="div_buttons"  method="POST">
 			<input type="submit" value="Jogos" id="button_jogos" class="button_jogos" name="button_jogos">
 			<input type="submit" value="Alunos" id="button_alunos" class="button_alunos" name="button_alunos">
 			<input type="submit" value="Gerenciar" id="button_gerenciar" class="button_gerenciar" name="button_gerenciar">
-		</div>
+		</form>
 		
 		<div class="div_jogos" id="div_jogos">
 		<?php
 			//enquanto houver jogos, saão criadas as divs
 			while($dado_jogo = $jogos->fetch_array()) {?>
 		  	<div class="div_jogo">
-		  		<a href="<?php echo $dado_jogo['id']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
+		  		<a href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_sala; ?>">
 		  			<img class="imagem_jogo" src="imgs/jogo.jpg" alt="some text" ></a>
-		  		<a href="<?php echo $dado_jogo['id']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
+		  		<a href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_sala; ?>">
 		  		<p class="nome_jogo"><?php echo $dado_jogo['nome']; ?></p></a>
 		  		<input type="image" id="deletar_jogo" class="deletar_jogo" alt="deletar"
        			onclick="deletarJogo()" src="imgs/delete_icon.png"> 
 		  	</div>
+		  	
 			<?php } ?>
+								  	
+		  	<script>
+		
+			function deletarJogo() {
+				var cod_sala = "<?php echo $cod_sala;?>";
+				var cod_jogo = "<?php echo $cod_jogo;?>";
+				var query_deletar_jogo = "DELETE FROM sala_jogo WHERE sala_id = " + cod_sala + " AND jogo_id = " + cod_jogo;
+			}
+			
+			</script>
 			
 			<div class="div_novo_jogo">
 				<input type="image" class="imagem_novo_jogo" id="imagem_novo_jogo"
@@ -96,11 +110,11 @@ if (isset($_GET['nome'])){
 		</div>
 		
 		<div class="div_alunos" id="div_alunos">
-
+			
 		</div>
 		
 		<div class="div_gerenciar" id="div_gerenciar">
-
+			
 		</div>
 		
 	</div>
@@ -113,9 +127,9 @@ if(isset($_POST["button_jogos"])){
 	//se for selecionado o botão de cadastro, o formulário do cadastro é escondido
 	?>
 	<script type='text/javascript'>
-		document.getElementById("div_jogos").style.visibility = 'visible';
-		document.getElementById("div_alunos").style.visibility = 'hidden';
-		document.getElementById("div_gerenciar").style.visibility = 'hidden';
+		document.getElementById("div_jogos").style.display = 'block';
+		document.getElementById("div_alunos").style.display = 'none';
+		document.getElementById("div_gerenciar").style.display = 'none';
 	</script>
 	<?php
 }
@@ -124,9 +138,9 @@ if(isset($_POST["button_alunos"])){
 	//se for selecionado o botão de cadastro, o formulário do login é escondido
 	?>
 	<script type='text/javascript'>
-		document.getElementById("div_jogos").style.visibility = 'hidden';
-		document.getElementById("div_alunos").style.visibility = 'visible';
-		document.getElementById("div_gerenciar").style.visibility = 'hidden';
+		document.getElementById("div_jogos").style.display = 'none';
+		document.getElementById("div_alunos").style.display = 'block';
+		document.getElementById("div_gerenciar").style.display = 'none';
 	</script>
 	<?php
 }
@@ -135,9 +149,9 @@ if(isset($_POST["button_gerenciar"])){
 	//se for selecionado o botão de cadastro, o formulário do cadastro é escondido
 	?>
 	<script type='text/javascript'>
-		document.getElementById("div_jogos").style.visibility = 'hidden';
-		document.getElementById("div_alunos").style.visibility = 'hidden';
-		document.getElementById("div_gerenciar").style.visibility = 'visible';
+		document.getElementById("div_jogos").style.display = 'none';
+		document.getElementById("div_alunos").style.display = 'none';
+		document.getElementById("div_gerenciar").style.display = 'block';
 	</script>
 	<?php
 }

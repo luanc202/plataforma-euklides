@@ -15,13 +15,13 @@ $connect = mysqli_connect('localhost','root','admin');
 $db = mysqli_select_db($connect,'euklides');
 
 //criada a query descobrir o id do professor com o email digitado
-$query_select_professor = "SELECT id FROM professor WHERE email = '$email'";
+$query_select_professor = "SELECT cod_professor FROM professor WHERE email = '$email'";
 //a variável $select_professor recebe o resultado da execução dessa query
 $select_professor = mysqli_query($connect,$query_select_professor);
 //o array $array_professor recebe todos os valores da busca
 $array_professor = mysqli_fetch_array($select_professor);
 //a variável $id_professor recebe o id do professor
-$id_professor = $array_professor['id'];
+$id_professor = $array_professor['cod_professor'];
 
 if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null
 		|| $disciplina == "" || $disciplina == null) {
@@ -57,13 +57,13 @@ if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null
 		$insert = mysqli_query($connect,$query);
 		
 		//cria a query para obter o id da sala
-		$query_select_sala = "SELECT id FROM sala WHERE nome='$nome_sala'";
+		$query_select_sala = "SELECT cod_sala FROM sala WHERE nome='$nome_sala'";
 		//a variável $select_sala recebe o resultado da execução da query
 		$select_sala = mysqli_query($connect,$query_select_sala);
 		//o array $array_sala recebe os valores retornados
 		$array_sala = mysqli_fetch_array($select_sala);
 		//a variável $id_sala recebe o valor do array corresponde ao id
-		$id_sala = $array_sala['id'];
+		$id_sala = $array_sala['cod_sala'];
 		
 		//cria um registro na tabela sala_jogo paracada jogo selecionado pelo professor
 		foreach($_POST['check_list'] as $selected) {
