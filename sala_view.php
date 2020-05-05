@@ -20,9 +20,8 @@ if (isset($_GET['nome'])){
 	WHERE s.nome = '$nome_sala' AND s.cod_sala = sj.sala_id AND j.cod_jogo = sj.jogo_id";
 	//a variável $jogos recebe o resultado da execução da query
 	$jogos 		 = mysqli_query($connect,$query_select_jogo);
-	$array_jogos = mysqli_fetch_array($jogos);
-	$cod_jogo = $array_jogos['cod_jogo'];
-	$cod_sala = $array_jogos['cod_sala'];
+// 	$array_jogos = mysqli_fetch_array($jogos);
+	$cod_sala = 0;
 		
 	//cria a query para verificar quais alunos estão na sala
 	$query_alunos = "SELECT a.cod_aluno, a.nome FROM sala s, aluno a WHERE a.sala_id = s.cod_sala AND s.nome = '$nome_sala'";
@@ -81,26 +80,21 @@ if (isset($_GET['nome'])){
 		<?php
 			//enquanto houver jogos, saão criadas as divs
 			while($dado_jogo = $jogos->fetch_array()) {?>
-		  	<div class="div_jogo">
-		  		<a href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_sala; ?>">
+			<?php 
+				$cod_sala = $dado_jogo['cod_sala'];
+				?> 
+			<?php ?>
+		  	<form class="div_jogo" method="POST">
+		  		<a href="<?php echo $dado_jogo['cod_jogo'];?>/index.html?<?php echo $cod_sala;?>">
 		  			<img class="imagem_jogo" src="imgs/jogo.jpg" alt="some text" ></a>
-		  		<a href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_sala; ?>">
+		  		<a href="<?php echo $dado_jogo['cod_jogo'];?>/index.html?<?php echo $cod_sala;?>">
 		  		<p class="nome_jogo"><?php echo $dado_jogo['nome']; ?></p></a>
-		  		<input type="image" id="deletar_jogo" class="deletar_jogo" alt="deletar"
-       			onclick="deletarJogo()" src="imgs/delete_icon.png"> 
-		  	</div>
+		  		<button type="submit" id="deletar_jogo" class="deletar_jogo" name ="deletar_jogo[]" 
+		  		value="<?php echo $dado_jogo['cod_jogo'];?>" >
+		  		</button>
+		  	</form>
 		  	
-			<?php } ?>
-								  	
-		  	<script>
-		
-			function deletarJogo() {
-				var cod_sala = "<?php echo $cod_sala;?>";
-				var cod_jogo = "<?php echo $cod_jogo;?>";
-				var query_deletar_jogo = "DELETE FROM sala_jogo WHERE sala_id = " + cod_sala + " AND jogo_id = " + cod_jogo;
-			}
-			
-			</script>
+			<?php } //fecha o while ?> 
 			
 			<div class="div_novo_jogo">
 				<input type="image" class="imagem_novo_jogo" id="imagem_novo_jogo"
@@ -122,6 +116,14 @@ if (isset($_GET['nome'])){
 </html>
 
 <?php
+
+if (isset($_POST['deletar_jogo'])) {
+	foreach ($_POST['deletar_jogo'] as $cod_jogo){
+		$query_deletar = "DELETE FROM sala_jogo WHERE sala_id = $cod_sala AND jogo_id = $cod_jogo";
+		$delete = mysqli_query($connect,$query_deletar);
+		header("Refresh:0");
+	}
+}
 
 if(isset($_POST["button_jogos"])){
 	//se for selecionado o botão de cadastro, o formulário do cadastro é escondido
@@ -155,5 +157,4 @@ if(isset($_POST["button_gerenciar"])){
 	</script>
 	<?php
 }
-
 ?>
