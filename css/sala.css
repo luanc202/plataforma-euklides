@@ -48,7 +48,7 @@ h3 {
 
 .div_buttons {
 	display: flex;
-	background-color: rgba(0,0,0,0.05);
+	background-color: #F2F2F2;
 	width: 60%;
 	float: left;
 	margin-left: 10px;
@@ -59,24 +59,35 @@ h3 {
 	float: left;
 	width: 33.3%;
 	padding: 15px;
+	background-color: #F2F2F2;
+	border-style: solid;
+	color: black;
 }
 
 .button_alunos {
 	float: left;
 	width: 33.3%;
 	padding: 15px;
+	background-color:#7F7F7F;
+	border-style: solid;
+	color: white;
 }
 
 .button_gerenciar {
 	float: left;
 	width: 33.3%;
 	padding: 15px;
+	background-color:#7F7F7F;
+	border-style: solid;
+	color: white;
 }
 
 .div_jogos {
 	background-color: rgba(0,0,0,0.05);
 	width: 100%;
 	float: left;
+	top: -500px;
+	display: block;
 	margin-left: 10px;
 	margin-right: 10px;
 }
@@ -116,7 +127,7 @@ h3 {
 	width: 30px;
 	height: 30px;
 	margin:0 auto;
-    display:block;
+    display: block;
 }
 
 .div_novo_jogo {
@@ -134,4 +145,68 @@ h3 {
 	margin-right: 0%;
 	margin-top: 0%;
 	margin-bottom: 0%;
+}
+
+.div_alunos {
+	background-color: rgba(0,0,0,0.05);
+	width: 100%;
+	float: left;
+	top: -500px;
+	display: none;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.div_gerenciar {
+	background-color: rgba(0,0,0,0.05);
+	width: 100%;
+	float: left;
+	height: 500px;
+	display: none;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.campo {
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 50%	
+}
+
+#button_editar {
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-left: 25%;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.margin_campos {
+	margin-bottom: 10px;
+}
+
+.margin_labels {
+	margin-bottom: 5px;
+}
+
+label {
+	margin-left: 40px;	
 }

@@ -86,8 +86,14 @@ if(isset($_POST["button_login"])){
 	//se for selecionado o botão de cadastro, o formulário do cadastro é escondido
 	?>
 	<script type='text/javascript'>
+		//forms
 		document.getElementById("form_login").style.visibility = 'visible';
 		document.getElementById("form_cadastro").style.visibility = 'hidden';
+		//botões
+		document.getElementById("button_login").style.backgroundColor = '#F2F2F2';
+		document.getElementById("button_login").style.color = 'black';
+		document.getElementById("button_cadastro").style.backgroundColor = '#7F7F7F';
+		document.getElementById("button_cadastro").style.color = 'white';
 	</script>
 	<?php
 }
@@ -96,8 +102,14 @@ if(isset($_POST["button_cadastro"])){
 	//se for selecionado o botão de cadastro, o formulário do login é escondido
 	?>
 	<script type='text/javascript'>
+		//forms
 		document.getElementById("form_login").style.visibility = 'hidden';
 		document.getElementById("form_cadastro").style.visibility = 'visible';
+		//botões
+		document.getElementById("button_login").style.backgroundColor = '#7F7F7F';
+		document.getElementById("button_login").style.color = 'white';
+		document.getElementById("button_cadastro").style.backgroundColor = '#F2F2F2';
+		document.getElementById("button_cadastro").style.color = 'black';
 	</script>
 	<?php
 }

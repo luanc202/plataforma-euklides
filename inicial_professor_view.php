@@ -69,7 +69,7 @@
 				<label class="labels">Descrição (opcional)</label><br>
 				<input class="campo" type="text" name="input_descricao" id="input_descricao"><br>
 				<p class=margin_labels></p>
-				<label class="labels">Objetos de aprendizagem*</label>
+				<label class="labels">Objetos de aprendizagem</label>
 				<?php
 				//enquanto houver jogos cadastrados no banco, é criado um checkbox
 				while($dado_jogo = $jogos->fetch_array()) { ?>
