@@ -7,31 +7,31 @@ $connect = mysqli_connect('localhost','root','admin');
 $db = mysqli_select_db($connect,'euklides');
 
 //verifica se há o parâmetro nome na url
-if (isset($_GET['nome'])){
+if (isset($_GET['cod_sala'])){
 	//se sim, a variável $nome_sala e $id_professor recebem os respectivos valores
-	$nome_sala = $_GET['nome'];
+	$cod_sala = $_GET['cod_sala'];
 	$id_professor = $_GET['cod_prof'];
 	//é criado o link para a tela cadastro_view e adicionado como parâmetro o nome da sala
 	//dessa forma, os alunos podem se cadastrar direto na sala
-	$link = "http://localhost/euklides/plataforma-euklides/index.php?nome=$nome_sala&cod_prof=$id_professor";
+	$link = "http://localhost/euklides/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
 	
 	//cria a query para verificar quais jogos há na sala
-	$query_select_jogo = "SELECT s.cod_sala, j.cod_jogo, j.nome FROM jogo j, sala s, sala_jogo sj
-	WHERE s.nome = '$nome_sala' AND s.cod_sala = sj.sala_id AND j.cod_jogo = sj.jogo_id";
+	$query_select_jogo = "SELECT j.cod_jogo, j.nome FROM jogo j, sala s, sala_jogo sj
+	WHERE s.cod_sala = $cod_sala AND s.cod_sala = sj.sala_id AND j.cod_jogo = sj.jogo_id";
 	//a variável $jogos recebe o resultado da execução da query
 	$jogos 		 = mysqli_query($connect,$query_select_jogo);
 // 	$array_jogos = mysqli_fetch_array($jogos);
 		
 	//cria a query para verificar quais alunos estão na sala
-	$query_alunos = "SELECT a.cod_aluno, a.nome FROM sala s, aluno a WHERE a.sala_id = s.cod_sala AND s.nome = '$nome_sala'";
+	$query_alunos = "SELECT a.cod_aluno, a.nome FROM sala s, aluno a WHERE a.sala_id = s.cod_sala AND s.cod_sala = $cod_sala";
 	//a variável $alunos recebe o resultado da execução da query
 	$alunos       = mysqli_query($connect,$query_alunos);
 	
 	//cria a query para descobrir dados da sala
-	$query_sala = "SELECT * FROM sala s WHERE s.nome = '$nome_sala' AND s.professor_id = $id_professor";
+	$query_sala = "SELECT * FROM sala s WHERE s.cod_sala = '$cod_sala'";
 	$select_sala = mysqli_query($connect,$query_sala);
 	$array_sala = mysqli_fetch_array($select_sala);
-	$cod_sala = $array_sala['cod_sala'];
+	$nome_sala = $array_sala['nome'];
 	$disciplina_sala = $array_sala['disciplina'];
 	$descricao_sala = $array_sala['descricao'];
 	
@@ -49,7 +49,7 @@ if (isset($_GET['nome'])){
 </head>
 <body>
 	<div class="div_dash">
-		<h4>Inicio > <?php echo $nome_sala; ?></h4>
+		<h4>Início > <?php echo $nome_sala; ?></h4>
 		<h2><?php echo $nome_sala; ?></h2>
 		
 		<div class="div_link">
@@ -120,6 +120,7 @@ if (isset($_GET['nome'])){
 			<?php } ?>
 
 			<input type="submit" value="Editar" id="button_editar" name="button_editar"><br>
+			<p class="p_resultado"></p>
 		</form>
 		</div>
 		
@@ -275,11 +276,14 @@ if(isset($_POST["button_editar"])){
 		}
 		echo "<meta http-equiv='refresh' content='0'>";
 		//emite a mensagem e encaminha para a página sala_view.php
+
 		?>
 		<script>
-			alert("Sala editada com sucesso");
+			//document.getElementById("p_resultado").innerHTML = "Sala editada com sucesso";
+			alert("Sala editada com sucesso!");
 		</script>
 		<?php 
+		
 	} else {
 		//emite a mensagem e encaminha para a página inicial_professor.php
 		?>
