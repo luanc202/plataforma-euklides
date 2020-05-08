@@ -20,21 +20,13 @@ if(isset($_GET['cod_jogo'])){
 	//$nome_jogo recebe o nome da sala do aluno
 	$nome_jogo = $array_jogo['nome'];
 	
-	$json_str = '{"perguntas": '.
-			'[{"id":1, "texto":"Teste 1"},'.
-			'{"id":2, "texto":"Teste 2"}'.
-			']}';
-
-// 	$json_file = file_get_contents("data_perguntas/perguntas.json");
-// 	$json_str = json_decode($json_file, true);
-// 	$perguntas = $json_str->perguntas;
-
-	$jsonObj = json_decode($json_str);
-	$perguntas = $jsonObj->perguntas;
+	$url = './data_perguntas/perguntas.json'; // path to your JSON file
+	$data = file_get_contents($url); // put the contents of the file into a variable
+	$perguntas = json_decode($data); // decode the JSON feed
 	
 }
 
-// value do checkbox deve receber letra+numero da pergunta. ex: a2 - letra a da pergunta 2
+// value do checkbox deve receber numero da resposta+numero da pergunta. ex: 120 - resposta 1 da pergunta 20
 ?>
 
 <html>
@@ -51,19 +43,19 @@ if(isset($_GET['cod_jogo'])){
 		<div class="div_pergunta">
 			<p class="p_pergunta"><?php echo $p->id?> - <?php echo $p->texto?></p>
 			<br /><input class="labels" type="checkbox" id="1" name="check_list[]" 
-							value="1">
+							value="1<?php echo $p->id?>">
 			<label for="1"> Discordo totalmente</label><br />
 			<br /><input class="labels" type="checkbox" id="2" name="check_list[]" 
-							value="1">
+							value="2<?php echo $p->id?>">
 			<label for="2"> Discordo</label><br />
 			<br /><input class="labels" type="checkbox" id="3" name="check_list[]" 
-							value="1">
+							value="3<?php echo $p->id?>">
 			<label for="3"> Nem discordo, nem concordo</label><br />
 			<br /><input class="labels" type="checkbox" id="4" name="check_list[]" 
-							value="1">
+							value="4<?php echo $p->id?>">
 			<label for="4"> Concordo</label><br />
 			<br /><input class="labels" type="checkbox" id="5" name="check_list[]" 
-							value="1">
+							value="5<?php echo $p->id?>">
 			<label for="5"> Concordo totalmente</label><br />
 		</div>
 		<?php }?>
@@ -72,3 +64,4 @@ if(isset($_GET['cod_jogo'])){
 	
 </body>
 </html>
+
