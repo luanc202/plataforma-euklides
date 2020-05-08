@@ -130,7 +130,7 @@ if (isset($_GET['cod_sala'])){
 			while($dado_jogo = $jogos->fetch_array()) {?>
 		  	<form class="div_jogo" method="POST">
 		  		<a href="<?php echo $dado_jogo['cod_jogo'];?>/index.html">
-		  			<img class="imagem_jogo" src="imgs/jogo.jpg" alt="some text" ></a>
+		  			<img class="imagem_jogo" src="imgs/<?php echo $dado_jogo['nome']; ?>.jpg" alt="imagem do jogo" ></a>
 		  		<a href="<?php echo $dado_jogo['cod_jogo'];?>/index.html">
 		  		<p class="nome_jogo"><?php echo $dado_jogo['nome']; ?></p></a>
 		  		<button type="submit" id="deletar_jogo" class="deletar_jogo" name ="deletar_jogo[]" 

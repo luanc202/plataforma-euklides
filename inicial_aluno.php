@@ -1,6 +1,6 @@
 <?php
 include 'header.php';
-//recebe o email do aluno como cookie da pï¿½gina login.php
+//recebe o email do aluno como cookie da pÃ¡gina login.php
 $email = $_COOKIE['email'];
 //exclui o cookie recebido
 unset($_COOKIE['email']);
@@ -38,22 +38,22 @@ $select_jogo = mysqli_query($connect,$query_select_jogo);
 <body>
 
 	<div class="div_dash">
-		<h4>Início</h4>
+		<h4>InÃ­cio</h4>
 		<h2><?php echo $nome_sala; ?></h2>
 	  	
 	  	<?php 
 
-	  	//enquanto houver jogos, são criada as divs
+	  	//enquanto houver jogos, sÃ£o criadas as divs
 	  	while($dado_jogo = $select_jogo->fetch_array()) {
 	  	$cod_jogo = $dado_jogo['cod_jogo']; ?>
 	  	
 	  	<div class="div_jogo">
 	  		<a href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
-	  			<img class="imagem_jogo" src="imgs/<?php echo $dado_jogo['nome']; ?>.jpg" alt="some text" ></a>
+	  			<img class="imagem_jogo" src="imgs/<?php echo $dado_jogo['nome']; ?>.jpg" alt="imagem do jogo" ></a>
 	  		<a href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
 	  		<p class="nome_jogo"><?php echo $dado_jogo['nome']; ?></p></a>
 	  		<a class="link_avaliar" 
-	  		href="avaliacao.php?cod_jogo=<?php echo $dado_jogo['cod_jogo']; ?>&cod_aluno=<?php echo $cod_aluno; ?>">Avaliar jogo</a>
+	  		href="avaliacao_view.php?cod_jogo=<?php echo $dado_jogo['cod_jogo']; ?>&cod_aluno=<?php echo $cod_aluno; ?>">Avaliar jogo</a>
 	  	</div>
 		<?php } ?>
 		

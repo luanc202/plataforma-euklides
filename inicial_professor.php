@@ -1,26 +1,26 @@
 <?php
 
-//caso o professor tenha criado uma nova sala, a variável $nome_sala irá receber o nome digitado
+//caso o professor tenha criado uma nova sala, a variï¿½vel $nome_sala irï¿½ receber o nome digitado
 $nome_sala = $_POST['input_nome_sala'];
-//caso o professor tenha criado uma nova sala, a variável $descricao irá receber a descrição digitada
+//caso o professor tenha criado uma nova sala, a variï¿½vel $descricao irï¿½ receber a descriï¿½ï¿½o digitada
 $descricao = $_POST['input_descricao'];
-//caso o professor tenha criado uma nova sala, a variável $disciplina irá receber a disciplina digitada
+//caso o professor tenha criado uma nova sala, a variï¿½vel $disciplina irï¿½ receber a disciplina digitada
 $disciplina = $_POST['input_disciplina'];
-//recebe o cookie referente ao email enviado pela página login.php
+//recebe o cookie referente ao email enviado pela pï¿½gina login.php
 $email = $_COOKIE['email'];
 
-//cria a conexão
+//cria a conexï¿½o
 $connect = mysqli_connect('localhost','root','admin');
 //seleciona o banco de dados euklides
 $db = mysqli_select_db($connect,'euklides');
 
 //criada a query descobrir o id do professor com o email digitado
 $query_select_professor = "SELECT cod_professor FROM professor WHERE email = '$email'";
-//a variável $select_professor recebe o resultado da execução dessa query
+//a variï¿½vel $select_professor recebe o resultado da execuï¿½ï¿½o dessa query
 $select_professor = mysqli_query($connect,$query_select_professor);
 //o array $array_professor recebe todos os valores da busca
 $array_professor = mysqli_fetch_array($select_professor);
-//a variável $id_professor recebe o id do professor
+//a variï¿½vel $id_professor recebe o id do professor
 $id_professor = $array_professor['cod_professor'];
 
 if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null
@@ -32,18 +32,18 @@ if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null
 } else{	
 	//criada a query para verificar se existe alguma sala desse professor com o mesmo nome
 	$query_select_sala = "SELECT * FROM sala WHERE nome = '$nome_sala' AND professor_id = '$id_professor'";
-	//a variável $select_sala recebe o resultado da execução dessa query
+	//a variï¿½vel $select_sala recebe o resultado da execuï¿½ï¿½o dessa query
 	$select_sala = mysqli_query($connect,$query_select_sala);
 	//o array $array_sala recebe todos os valores da busca
 	$array_sala = mysqli_fetch_array($select_sala);
-	//o array $nome_sala_array recebe os nomes retornados na busca, se ele não encontrar nome igual,
-	//não vai retornar nenhum índice
+	//o array $nome_sala_array recebe os nomes retornados na busca, se ele nï¿½o encontrar nome igual,
+	//nï¿½o vai retornar nenhum ï¿½ndice
 	$nome_sala_array = $array_sala['nome'];
 	
-	// se encontrar alguma sala com nome igual retorna para a página inicial do professor	
+	// se encontrar alguma sala com nome igual retorna para a pï¿½gina inicial do professor	
 	if($nome_sala_array == $nome_sala){
 		echo"<script language='javascript' type='text/javascript'>
-		          alert('Essa sala já existe');window.location
+		          alert('Essa sala jï¿½ existe');window.location
 		          .href='inicial_professor_view.php'</script>";
 		die();
 	//fazer o cadastro da sala
@@ -53,24 +53,24 @@ if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null
 		//cria a query para criar uma nova sala
 		$query = "INSERT INTO sala (nome,professor_id,descricao,disciplina) VALUES 
 					('$nome_sala',$id_professor,'$descricao','$disciplina')";
-		//a variável $insert recebe o resultado (true ou false) da inserção
+		//a variï¿½vel $insert recebe o resultado (true ou false) da inserï¿½ï¿½o
 		$insert = mysqli_query($connect,$query);
 		
 		//cria a query para obter o id da sala
 		$query_select_sala = "SELECT cod_sala FROM sala WHERE nome='$nome_sala'";
-		//a variável $select_sala recebe o resultado da execução da query
+		//a variï¿½vel $select_sala recebe o resultado da execuï¿½ï¿½o da query
 		$select_sala = mysqli_query($connect,$query_select_sala);
 		//o array $array_sala recebe os valores retornados
 		$array_sala = mysqli_fetch_array($select_sala);
-		//a variável $id_sala recebe o valor do array corresponde ao id
+		//a variï¿½vel $id_sala recebe o valor do array corresponde ao id
 		$id_sala = $array_sala['cod_sala'];
 		
 		//cria um registro na tabela sala_jogo paracada jogo selecionado pelo professor
 		foreach($_POST['check_list'] as $selected) {
 			
-			//criada a query para verificar se já exite um registro sala_jogo com esses dados
+			//criada a query para verificar se jï¿½ exite um registro sala_jogo com esses dados
 			$query_select_sala = "SELECT * FROM sala_jogo WHERE sala_id = $id_sala AND jogo_id = $selected";
-			//se não voltar nennhum registro (número de linhas menor igual a zero zero) cadastra
+			//se nï¿½o voltar nennhum registro (nï¿½mero de linhas menor igual a zero zero) cadastra
 			if (mysqli_num_rows($query_select_sala)<=0) {
 				//cria a query para cadastrar o jogo e a sala na tabela sala_jogo
 				$query_insert_sala_jogo = "INSERT INTO sala_jogo (sala_id,jogo_id) VALUES ($id_sala,$selected)";
@@ -79,18 +79,19 @@ if(empty($_POST['check_list']) || $nome_sala == "" || $nome_sala == null
 		}
 	}
 	
-	//se a inserção tiver ocorrido
+	//se a inserï¿½ï¿½o tiver ocorrido
 	if($insert){
-		//emite a mensagem, encaminha para a página sala.php e coloca com parâmetro o nome da sala e o id do professor
+	
+		//emite a mensagem, encaminha para a pï¿½gina sala.php e coloca com parï¿½metro o nome da sala e o id do professor
 		echo"<script language='javascript' type='text/javascript'>
 				alert('Sala cadastrada com sucesso!');";
-		echo "javascript:window.location='sala_view.php?nome=".$nome_sala."&cod_prof=".$id_professor."';</script>";
+		echo "javascript:window.location='sala_view.php?cod_sala=".$id_sala."&cod_prof=".$id_professor."';</script>";
 		
-		//se a inserção não tiver ocorrido
+		//se a inserï¿½ï¿½o nï¿½o tiver ocorrido
 	} else {
-		//emite a mensagem e encaminha para a página inicial_professor.php
+		//emite a mensagem e encaminha para a pï¿½gina inicial_professor.php
 		echo"<script language='javascript' type='text/javascript'>
-		          alert('Não foi possível cadastrar essa sala');window.location
+		          alert('Nï¿½o foi possï¿½vel cadastrar essa sala');window.location
 		          .href='inicial_professor.php'</script>";
 	}
 }

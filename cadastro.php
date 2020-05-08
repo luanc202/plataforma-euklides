@@ -6,105 +6,105 @@
 
 // unset($_SESSION['existe_sala'], $_SESSION['sala']);
 
-//são coletados os cookies enviados da cadastro_view.php
+//sï¿½o coletados os cookies enviados da cadastro_view.php
 $existe_sala = $_COOKIE['existe_sala'];
 $cod_sala = $_COOKIE['sala'];
 $id_professor = $_COOKIE['cod_prof'];
-//os cookies são deletados para que possam receber novos valores a cada cadastro
+//os cookies sï¿½o deletados para que possam receber novos valores a cada cadastro
 unset($_COOKIE['existe_sala'], $_COOKIE['cod_sala']);
 
-//os dados digitados na cadastro_view.php são coletados
+//os dados digitados na cadastro_view.php sï¿½o coletados
 $nome = $_POST['nome'];
 $email = $_POST['email'];
 //o md5 serve para criptograr a senha
 $senha = MD5($_POST['senha']);
 $rsenha = MD5($_POST['rsenha']);
-//é criada a conexão com o banco
+//ï¿½ criada a conexï¿½o com o banco
 $connect = mysqli_connect('localhost','root','admin');
-//o banco de dados selecionado é o euklides
+//o banco de dados selecionado ï¿½ o euklides
 $db = mysqli_select_db($connect,'euklides');
 
 //criada a query para verificar se existe algum aluno com o email digitado
 $query_select_aluno = "SELECT * FROM aluno WHERE email = '$email'";
-//a variável $select_aluno recebe o resultado da execução dessa query
+//a variï¿½vel $select_aluno recebe o resultado da execuÃ§Ã£o dessa query
 $select_aluno = mysqli_query($connect,$query_select_aluno);
 //o array $array_aluno recebe todos os valores da busca
 $array_aluno = mysqli_fetch_array($select_aluno);
-//o array $email_aluno_array recebe os emails retornados na busca, se ele não encontrar email igual, 
-//não vai retornar nenhum índice
+//o array $email_aluno_array recebe os emails retornados na busca, se ele nï¿½o encontrar email igual, 
+//nï¿½o vai retornar nenhum ï¿½ndice
 $email_aluno_array = $array_aluno['email'];
 
 //criada a query para verificar se existe algum professor com o email digitado
 $query_select_professor = "SELECT * FROM professor WHERE email = '$email'";
-//a variável $select_professor recebe o resultado da execução dessa query
+//a variÃ¡vel $select_professor recebe o resultado da execuÃ§Ã£o dessa query
 $select_professor = mysqli_query($connect,$query_select_professor);
 //o array $array_professor recebe todos os valores da busca
 $array_professor = mysqli_fetch_array($select_professor);
-//o array $email_professor_array recebe os emails retornados na busca, se ele não encontrar email igual,
-//não vai retornar nenhum índice
+//o array $email_professor_array recebe os emails retornados na busca, se ele nï¿½o encontrar email igual,
+//nï¿½o vai retornar nenhum ï¿½ndice
 $email_professor_array = $array_professor['email'];
 
-//verifica se há algum campo vazio
+//verifica se hï¿½ algum campo vazio
 if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == "" || $senha == null
 		|| $rsenha == "" || $rsenha == null){
-	//se houver algum campo vazio, irá emitir uma janela com a mensagem e o usuário será encaminhado para a página
+	//se houver algum campo vazio, irï¿½ emitir uma janela com a mensagem e o usuï¿½rio serï¿½ encaminhado para a pï¿½gina
 	//cadastro.view
 	echo"<script language='javascript' type='text/javascript'>
 		          alert('Todos os campos devem ser preenchidos');window.location
 		          .href='index.php?acao=cadastro'</script>";
 	die();
 
-//verifica se o email inserido já foi cadastrado no banco
+//verifica se o email inserido jï¿½ foi cadastrado no banco
 }else{
 	if($email_aluno_array == $email || $email_professor_array == $email){
 		echo"<script language='javascript' type='text/javascript'>
-		          alert('Esse login já existe');window.location
+		          alert('Esse login jï¿½ existe');window.location
 		          .href='index.php?acao=cadastro'</script>";
 		die();
 		
-	//verifica se as senhas digitadas são iguais
+	//verifica se as senhas digitadas sï¿½o iguais
 	}else if (strcmp($senha,$rsenha) != 0){
 		echo"<script language='javascript' type='text/javascript'>
-		          alert('Senhas não coincidem');window.location
+		          alert('Senhas nï¿½o coincidem');window.location
 		          .href='index.php?acao=cadastro'</script>";
 		die();
-	//se não houver nenhum erro, deve prosseguir para o cadastro dos dados
+	//se nï¿½o houver nenhum erro, deve prosseguir para o cadastro dos dados
 	}else{
-		//se houver uma sala na URL, significa que quem está sendo cadastrado é um aluno
+		//se houver uma sala na URL, significa que quem estï¿½ sendo cadastrado ï¿½ um aluno
 		if ($existe_sala == 1){
 				
-			//query para ser inserido na tabela aluno, incluindo a sala em que ele está
+			//query para ser inserido na tabela aluno, incluindo a sala em que ele estï¿½
 			$query = "INSERT INTO aluno (nome,email,senha,sala_id) VALUES ('$nome','$email','$senha',$cod_sala)";
-			//a variável $insert recebe o resultado da execução da query
+			//a variï¿½vel $insert recebe o resultado da execuï¿½ï¿½o da query
 			$insert = mysqli_query($connect,$query);
 			
 			if($insert){
-				//se tiver sido um sucesso, aparecer a mensagem o usuário será encaminhado para o login
+				//se tiver sido um sucesso, aparecer a mensagem o usuï¿½rio serï¿½ encaminhado para o login
 				echo"<script language='javascript' type='text/javascript'>
 		          alert('Aluno cadastrado com sucesso!');window.location.
 		          href='index.php'</script>";
 			}else{
-				//se tiver sido uma falha, aparecer a mensagem o usuário será encaminhado para o cadastro novamente
+				//se tiver sido uma falha, aparecer a mensagem o usuï¿½rio serï¿½ encaminhado para o cadastro novamente
 				echo"<script language='javascript' type='text/javascript'>
-		          alert('Não foi possível cadastrar esse aluno');window.location
+		          alert('NÃ£o foi possÃ­vel cadastrar esse aluno');window.location
 		          .href='index.php?acao=cadastro'</script>";
 			}
-		//se não houver uma sala na URL, significa que quem está sendo cadastrado é um professor
+		//se nï¿½o houver uma sala na URL, significa que quem estï¿½ sendo cadastrado ï¿½ um professor
 		} else {
 			//query para ser inserido na tabela professor
 			$query = "INSERT INTO professor (nome,email,senha) VALUES ('$nome','$email','$senha')";
-			//a variável $insert recebe o resultado da execução da query
+			//a variï¿½vel $insert recebe o resultado da execuï¿½ï¿½o da query
 			$insert = mysqli_query($connect,$query);
 			
-			//se tiver sido um sucesso, aparecer a mensagem o usuário será encaminhado para o login
+			//se tiver sido um sucesso, aparecer a mensagem o usuï¿½rio serï¿½ encaminhado para o login
 			if($insert){
 				echo"<script language='javascript' type='text/javascript'>
 		          alert('Professor cadastrado com sucesso!');window.location.
 		          href='index.php'</script>";
-			//se tiver sido uma falha, aparecer a mensagem o usuário será encaminhado para o cadastro novamente
+			//se tiver sido uma falha, aparecer a mensagem o usuï¿½rio serï¿½ encaminhado para o cadastro novamente
 			}else{
 				echo"<script language='javascript' type='text/javascript'>
-		          alert('Não foi possível cadastrar esse professor');window.location
+		          alert('NÃ£o foi possÃ­vel cadastrar esse professor');window.location
 		          .href='index.php?acao=cadastro'</script>";
 			}
 		}
