@@ -1,4 +1,10 @@
-{"perguntas":
-			[{"id":1, "texto":"Teste 1"},
-			{"id":2, "texto":"Teste 2"}
-			]}
+[{
+	"id": "1",
+	"texto": "Pergunta 1"
+}, {
+	"id": "2",
+	"texto": "Pergunta 2"
+}, {
+	"id": "3",
+	"texto": "Pergunta 3"
+}]
