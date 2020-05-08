@@ -31,25 +31,29 @@ $select_jogo = mysqli_query($connect,$query_select_jogo);
 
 <html>
 <head>
-  <meta charset="UTF-8">
   <title>Meus jogos</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="stylesheet" type="text/css" href="css/inicial_aluno.css">
 </head>
 <body>
 
 	<div class="div_dash">
-		<h4>Inicio</h4>
+		<h4>Início</h4>
 		<h2><?php echo $nome_sala; ?></h2>
 	  	
 	  	<?php 
-	  	//enquanto houver jogos, sï¿½o criada as divs
-	  	while($dado_jogo = $select_jogo->fetch_array()) {?>
+
+	  	//enquanto houver jogos, são criada as divs
+	  	while($dado_jogo = $select_jogo->fetch_array()) {
+	  	$cod_jogo = $dado_jogo['cod_jogo']; ?>
+	  	
 	  	<div class="div_jogo">
 	  		<a href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
 	  			<img class="imagem_jogo" src="imgs/<?php echo $dado_jogo['nome']; ?>.jpg" alt="some text" ></a>
 	  		<a href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
 	  		<p class="nome_jogo"><?php echo $dado_jogo['nome']; ?></p></a>
-	  		<a class="link_avaliar" href="">Avaliar jogo</a>
+	  		<a class="link_avaliar" 
+	  		href="avaliacao.php?cod_jogo=<?php echo $dado_jogo['cod_jogo']; ?>&cod_aluno=<?php echo $cod_aluno; ?>">Avaliar jogo</a>
 	  	</div>
 		<?php } ?>
 		

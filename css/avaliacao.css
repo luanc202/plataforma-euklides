@@ -1,0 +1,27 @@
+body {
+	margin: 0;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	background-color: #F2F2F2;
+}
+
+.div_dash{
+	margin: auto;
+	width: 40%;
+}
+
+h1 {
+	margin: 20px 20px 80px 20px;
+	padding: 15px;
+	background-color: white;
+	border: 1px solid black;
+}
+
+.div_pergunta {
+	background-color: white;
+	margin: 20px;
+	border: 1px solid black;
+}
+
+.p_pergunta {
+	margin-left: 10px;
+}

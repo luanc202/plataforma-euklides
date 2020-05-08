@@ -40,8 +40,8 @@ include 'header.php';
 		</form>
 	</div>
 	<?php 
-		//verifica se há um parâmetro nome na url, o que significa que um aluno está fazendo CADASTRO
-		if (isset($_GET['nome'])){
+		//verifica se há um parâmetro cod_sala na url, o que significa que um aluno está fazendo CADASTRO
+		if (isset($_GET['cod_sala'])){
 			//esconde o formulário do login e mostra o formulário do cadastro
 			?>
 			<script type='text/javascript'>
@@ -115,23 +115,23 @@ if(isset($_POST["button_cadastro"])){
 }
 
 //verifica se há o parâmetro sala na url
-if (isset($_GET['nome'])){
+if (isset($_GET['cod_sala'])){
 	//se existir, a variável existe_sala recebe 1
-	$existe_sala = isset($_GET['nome']);
-	//se existir, a variável nome_sala eid_professor recebe os valores que estão na url
-	$nome_sala = $_GET['nome'];
+	$existe_sala = isset($_GET['cod_sala']);
+	//se existir, a variável cod_sala eid_professor recebe os valores que estão na url
+	$cod_sala = $_GET['cod_sala'];
 	$id_professor = $_GET['cod_prof'];
 	// 	session_start();
 	// 	$_SESSION['existe_sala'] = $existe_sala;
 	// 	$_SESSION['sala'] = $sala;
 	//se existir, as variáveis são enviadas como cookies
 	setcookie("existe_sala",$existe_sala);
-	setcookie("sala",$nome_sala);
+	setcookie("sala",$cod_sala);
 	setcookie("cod_prof",$id_professor);
 }else {
 	//se não existir, são enviados os valores 0 e espaço
 	setcookie("existe_sala",0);
-	setcookie("sala","");
+	setcookie("sala",0);
 	setcookie("cod_prof",0);
 }
 

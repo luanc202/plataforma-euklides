@@ -8,10 +8,10 @@
 
 //são coletados os cookies enviados da cadastro_view.php
 $existe_sala = $_COOKIE['existe_sala'];
-$sala = $_COOKIE['sala'];
+$cod_sala = $_COOKIE['sala'];
 $id_professor = $_COOKIE['cod_prof'];
 //os cookies são deletados para que possam receber novos valores a cada cadastro
-unset($_COOKIE['existe_sala'], $_COOKIE['sala']);
+unset($_COOKIE['existe_sala'], $_COOKIE['cod_sala']);
 
 //os dados digitados na cadastro_view.php são coletados
 $nome = $_POST['nome'];
@@ -72,18 +72,9 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 	}else{
 		//se houver uma sala na URL, significa que quem está sendo cadastrado é um aluno
 		if ($existe_sala == 1){
-			//como há uma sala, é necessário descobrir o id dessa sala
-			//para isso, é feito um select com o nome da sala para descobrir o id
-			$query_select_sala = "SELECT cod_sala FROM sala WHERE nome = '$sala' AND professor_id = '$id_professor'";
-			//a variável $select_sala recebe o resultado da execução da query
-			$select_sala = mysqli_query($connect,$query_select_sala);
-			//o array $array_sala recebe os valores retornados
-			$array_sala = mysqli_fetch_array($select_sala);
-			//a variável $id_sala recebe o valor do array corresponde ao id
-			$id_sala = $array_sala['cod_sala'];
-			
+				
 			//query para ser inserido na tabela aluno, incluindo a sala em que ele está
-			$query = "INSERT INTO aluno (nome,email,senha,sala_id) VALUES ('$nome','$email','$senha',$id_sala)";
+			$query = "INSERT INTO aluno (nome,email,senha,sala_id) VALUES ('$nome','$email','$senha',$cod_sala)";
 			//a variável $insert recebe o resultado da execução da query
 			$insert = mysqli_query($connect,$query);
 			
