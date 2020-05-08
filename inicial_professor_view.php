@@ -3,9 +3,9 @@
 
 	include 'header.php';
 
-	//recebe o email do professor como cookie da página login.php
+	//recebe o email do professor como cookie da pï¿½gina login.php
 	$email = $_COOKIE['email'];
-	//cria a conexão
+	//cria a conexï¿½o
 	$connect = mysqli_connect('localhost','root','admin');
 	//seleciona o banco de dados euklides
 	$db = mysqli_select_db($connect,'euklides');
@@ -13,12 +13,12 @@
 	//seleciona o nome de todas as salas criadas pelo professor do email recebido
 	$query_select_salas = "SELECT s.cod_sala, s.nome, p.cod_professor, s.descricao FROM sala s, professor p WHERE p.email = '$email'
 						AND s.professor_id = p.cod_professor";
-	//a variável $con recebe o resultado da execução da query
+	//a variï¿½vel $con recebe o resultado da execuï¿½ï¿½o da query
 	$salas      = mysqli_query($connect,$query_select_salas);
 	
 	//seleciona o nome e o id de todos os objetos de aprendizagem cadastrados
 	$query_select_jogos = "SELECT * FROM jogo";
-	//a variável $jogos recebe o resultado da execução da query
+	//a variï¿½vel $jogos recebe o resultado da execuï¿½ï¿½o da query
 	$jogos      = mysqli_query($connect,$query_select_jogos);
 	
 ?>
@@ -36,7 +36,7 @@
 		<h2>Salas</h2>
 	  	
 	  	<?php 
-	  	//enquanto houver salas, são criada as divs
+	  	//enquanto houver salas, sÃ£o criadas as divs
 	  	while($dado_sala = $salas->fetch_array()) {?>
 	  	<div class="div_sala">
 	  		<a href="sala_view.php?cod_sala=<?php echo $dado_sala['cod_sala']; ?>&cod_prof=<?php echo $dado_sala['cod_professor']; ?>">
@@ -47,7 +47,7 @@
 	  	</div>
 		<?php } ?>
 		
-		<div class="div_sala">
+		<div class="div_nova_sala">
 			<input type="image" class="imagem_nova_sala" id="imagem_nova_sala"
 		  		src="imgs/nova_sala.png" alt="some text" >
 		</div>
@@ -66,12 +66,12 @@
 				<label class="labels">Disciplina</label><br>
 				<input class="campo" type="text" name="input_disciplina" id="input_disciplina"><br>
 				<p class=margin_labels></p>
-				<label class="labels">Descrição (opcional)</label><br>
+				<label class="labels">Descriï¿½ï¿½o (opcional)</label><br>
 				<input class="campo" type="text" name="input_descricao" id="input_descricao"><br>
 				<p class=margin_labels></p>
 				<label class="labels">Objetos de aprendizagem</label>
 				<?php
-				//enquanto houver jogos cadastrados no banco, é criado um checkbox
+				//enquanto houver jogos cadastrados no banco, ï¿½ criado um checkbox
 				while($dado_jogo = $jogos->fetch_array()) { ?>
 					<br /><input class="labels" type="checkbox" id="<?php echo $dado_jogo['cod_jogo']; ?>" name="check_list[]" 
 							value="<?php echo $dado_jogo['cod_jogo']; ?>">
