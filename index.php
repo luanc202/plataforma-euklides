@@ -1,6 +1,6 @@
 <?php
 
-include 'header.php';
+include 'header_index.php';
 
 ?>
 
@@ -40,34 +40,34 @@ include 'header.php';
 		</form>
 	</div>
 	<?php 
-		//verifica se há um parâmetro cod_sala na url, o que significa que um aluno está fazendo CADASTRO
+		//verifica se hï¿½ um parï¿½metro cod_sala na url, o que significa que um aluno estï¿½ fazendo CADASTRO
 		if (isset($_GET['cod_sala'])){
-			//esconde o formulário do login e mostra o formulário do cadastro
+			//esconde o formulï¿½rio do login e mostra o formulï¿½rio do cadastro
 			?>
 			<script type='text/javascript'>
 				document.getElementById("form_login").style.visibility = 'hidden';
 				document.getElementById("form_cadastro").style.visibility = 'visible';
 			</script>
 			<?php 
-			//verifica se há o parâmetro ação na url e é igual a cadastro
+			//verifica se hï¿½ o parï¿½metro aï¿½ï¿½o na url e ï¿½ igual a cadastro
 		} else if ($_GET['acao'] == 'cadastro'){
-			//esconde o formulário do login e mostra o formulário do cadastro
+			//esconde o formulï¿½rio do login e mostra o formulï¿½rio do cadastro
 			?>
 			<script type='text/javascript'>
 				document.getElementById("form_login").style.visibility = 'hidden';
 				document.getElementById("form_cadastro").style.visibility = 'visible';
 			</script>
 			<?php 
-			//verifica se há o parâmetro ação na url e é igual a login
+			//verifica se hï¿½ o parï¿½metro aï¿½ï¿½o na url e ï¿½ igual a login
 		} else if ($_GET['acao'] == 'login'){
-			//esconde o formulário do cadastro e mostra o formulário do login
+			//esconde o formulï¿½rio do cadastro e mostra o formulï¿½rio do login
 			?>
 			<script type='text/javascript'>
 				document.getElementById("form_login").style.visibility = 'visible';
 				document.getElementById("form_cadastro").style.visibility = 'hidden';
 			</script>
 			<?php 
-			//qualquer outro jeito, mostra o login que é a forma padrão
+			//qualquer outro jeito, mostra o login que ï¿½ a forma padrï¿½o
 		} else {
 			?>
 			<script type='text/javascript'>
@@ -83,13 +83,13 @@ include 'header.php';
 <?php
 
 if(isset($_POST["button_login"])){
-	//se for selecionado o botão de cadastro, o formulário do cadastro é escondido
+	//se for selecionado o botï¿½o de cadastro, o formulï¿½rio do cadastro ï¿½ escondido
 	?>
 	<script type='text/javascript'>
 		//forms
 		document.getElementById("form_login").style.visibility = 'visible';
 		document.getElementById("form_cadastro").style.visibility = 'hidden';
-		//botões
+		//botï¿½es
 		document.getElementById("button_login").style.backgroundColor = '#F2F2F2';
 		document.getElementById("button_login").style.color = 'black';
 		document.getElementById("button_cadastro").style.backgroundColor = '#7F7F7F';
@@ -99,13 +99,13 @@ if(isset($_POST["button_login"])){
 }
 
 if(isset($_POST["button_cadastro"])){
-	//se for selecionado o botão de cadastro, o formulário do login é escondido
+	//se for selecionado o botï¿½o de cadastro, o formulï¿½rio do login ï¿½ escondido
 	?>
 	<script type='text/javascript'>
 		//forms
 		document.getElementById("form_login").style.visibility = 'hidden';
 		document.getElementById("form_cadastro").style.visibility = 'visible';
-		//botões
+		//botï¿½es
 		document.getElementById("button_login").style.backgroundColor = '#7F7F7F';
 		document.getElementById("button_login").style.color = 'white';
 		document.getElementById("button_cadastro").style.backgroundColor = '#F2F2F2';
@@ -114,25 +114,29 @@ if(isset($_POST["button_cadastro"])){
 	<?php
 }
 
-//verifica se há o parâmetro sala na url
+//verifica se hï¿½ o parï¿½metro sala na url
 if (isset($_GET['cod_sala'])){
-	//se existir, a variável existe_sala recebe 1
+	//se existir, a variï¿½vel existe_sala recebe 1
 	$existe_sala = isset($_GET['cod_sala']);
-	//se existir, a variável cod_sala eid_professor recebe os valores que estão na url
+	//se existir, a variï¿½vel cod_sala e id_professor recebe os valores que estï¿½o na url
 	$cod_sala = $_GET['cod_sala'];
 	$id_professor = $_GET['cod_prof'];
-	// 	session_start();
-	// 	$_SESSION['existe_sala'] = $existe_sala;
-	// 	$_SESSION['sala'] = $sala;
-	//se existir, as variáveis são enviadas como cookies
-	setcookie("existe_sala",$existe_sala);
-	setcookie("sala",$cod_sala);
-	setcookie("cod_prof",$id_professor);
+	session_start();
+	$_SESSION['existe_sala'] = $existe_sala;
+	$_SESSION['cod_sala_index'] = $cod_sala;
+	$_SESSION['id_professor_index'] = $id_professor;
+	//se existir, as variï¿½veis sï¿½o enviadas como cookies
+// 	setcookie("existe_sala",$existe_sala);
+// 	setcookie("sala",$cod_sala);
+// 	setcookie("cod_prof",$id_professor);
 }else {
-	//se não existir, são enviados os valores 0 e espaço
-	setcookie("existe_sala",0);
-	setcookie("sala",0);
-	setcookie("cod_prof",0);
+	//se nï¿½o existir, sï¿½o enviados os valores 0 e espaï¿½o
+// 	setcookie("existe_sala",0);
+// 	setcookie("sala",0);
+// 	setcookie("cod_prof",0);
+	$_SESSION['existe_sala'] = 0;
+	$_SESSION['cod_sala_index'] = 0;
+	$_SESSION['id_professor_index'] = 0;
 }
 
 ?>

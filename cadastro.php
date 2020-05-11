@@ -1,17 +1,17 @@
 <?php
 
-// session_start();
-// $existe_sala = $_SESSION['existe_sala'];
-// $sala = $_SESSION['sala'];
+session_start();
+$existe_sala = $_SESSION['existe_sala'];
+$cod_sala = $_SESSION['cod_sala_index'];
+$id_professor = $_SESSION['id_professor_index'];
 
 // unset($_SESSION['existe_sala'], $_SESSION['sala']);
 
-//s�o coletados os cookies enviados da cadastro_view.php
-$existe_sala = $_COOKIE['existe_sala'];
-$cod_sala = $_COOKIE['sala'];
-$id_professor = $_COOKIE['cod_prof'];
-//os cookies s�o deletados para que possam receber novos valores a cada cadastro
-unset($_COOKIE['existe_sala'], $_COOKIE['cod_sala']);
+// $existe_sala = $_COOKIE['existe_sala'];
+// $cod_sala = $_COOKIE['sala'];
+// $id_professor = $_COOKIE['cod_prof'];
+// //os cookies s�o deletados para que possam receber novos valores a cada cadastro
+// unset($_COOKIE['existe_sala'], $_COOKIE['cod_sala']);
 
 //os dados digitados na cadastro_view.php s�o coletados
 $nome = $_POST['nome'];
@@ -19,7 +19,7 @@ $email = $_POST['email'];
 //o md5 serve para criptograr a senha
 $senha = MD5($_POST['senha']);
 $rsenha = MD5($_POST['rsenha']);
-//� criada a conex�o com o banco
+//criada a conexão com o banco
 $connect = mysqli_connect('localhost','root','admin');
 //o banco de dados selecionado � o euklides
 $db = mysqli_select_db($connect,'euklides');

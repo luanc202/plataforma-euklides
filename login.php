@@ -3,7 +3,7 @@
 $email = $_POST['email'];
 $entrar = $_POST['entrar'];
 $senha = md5($_POST['senha']);
-//criar a conex�o
+//criar a conexão
 $connect = mysqli_connect('localhost','root','admin');
 //seleciona o banco de dados
 $db = mysqli_select_db($connect,'euklides');
@@ -26,7 +26,7 @@ if (isset($entrar)) {
         alert('Email e/ou senha incorretos');window.location
         .href='index.php?acao=login';</script>";
 		die();
-		//se o n�mero de linhas da vari�vel $verifica_professor for maior que zero significa que h� um professor
+		//se o número de linhas da variável $verifica_professor for maior que zero significa que h� um professor
 	}else if (mysqli_num_rows($verifica_professor)>0){
 		session_start();
 		//envia o email do professor 
