@@ -6,8 +6,9 @@ $nome_sala = $_POST['input_nome_sala'];
 $descricao = $_POST['input_descricao'];
 //caso o professor tenha criado uma nova sala, a vari�vel $disciplina ir� receber a disciplina digitada
 $disciplina = $_POST['input_disciplina'];
-//recebe o cookie referente ao email enviado pela p�gina login.php
-$email = $_COOKIE['email'];
+//recebe o email enviado
+session_start();
+$email = $_SESSION['email_professor'];
 
 //cria a conex�o
 $connect = mysqli_connect('localhost','root','admin');
