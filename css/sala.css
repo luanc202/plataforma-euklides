@@ -128,6 +128,10 @@ h3 {
 	height: 30px;
 	margin:0 auto;
     display: block;
+    background-image: url(http://localhost/euklides/plataforma-euklides/imgs/delete_icon.png);
+    background-size: 25px 25px;
+    border-style: solid;
+	color: black;
 }
 
 .div_novo_jogo {

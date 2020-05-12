@@ -38,8 +38,7 @@ if (isset($_GET['cod_sala'])){
 	
 	//cria query para descobrir todos os jogos disponíveis
 	$query_todos_jogos = "SELECT * FROM jogo";
-	$todos_jogos = mysqli_query($connect,$query_todos_jogos);
-	
+	$todos_jogos = mysqli_query($connect,$query_todos_jogos);	
 	
 	?>
 
@@ -135,8 +134,8 @@ if (isset($_GET['cod_sala'])){
 			  			<img class="imagem_jogo" src="imgs/<?php echo $dado_jogo['nome']; ?>.jpg" alt="imagem do jogo" ></a>
 			  		<a href="<?php echo $dado_jogo['cod_jogo'];?>/index.html">
 			  		<p class="nome_jogo"><?php echo $dado_jogo['nome']; ?></p></a>
-			  		<button type="submit" id="deletar_jogo" class="deletar_jogo" name ="deletar_jogo[]" 
-			  		value="<?php echo $dado_jogo['cod_jogo'];?>" >
+			  		<button type="submit" id="deletar_jogo" class="deletar_jogo" 
+			  		name ="deletar_jogo[]" value="<?php echo $dado_jogo['cod_jogo'];?>" >
 			  		</button>
 			  	</form>
 			  	
