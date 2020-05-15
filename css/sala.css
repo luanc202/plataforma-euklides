@@ -161,6 +161,16 @@ h3 {
 	margin-right: 10px;
 }
 
+.div_aluno_individual {
+	background-color: rgba(0,0,0,0.05);
+	width: 100%;
+	float: left;
+	top: -500px;
+	display: none;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -174,6 +184,13 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.button_aluno_indiv {
+	padding: 10px 15px 10px 15px;
+	border-style: solid;
+	width: 100%;
+	text-decoration: underline;
 }
 
 .div_gerenciar {

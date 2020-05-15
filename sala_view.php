@@ -3,6 +3,8 @@
 //verifica se há o parâmetro nome na url
 if (isset($_GET['cod_sala'])){
 	include 'header.php';
+	include 'dao/jogos_dao.php';
+	include 'dao/alunos_dao.php';
 	
 	//cria a conexão
 	$connect = mysqli_connect('localhost','root','admin');
@@ -16,12 +18,12 @@ if (isset($_GET['cod_sala'])){
 	//dessa forma, os alunos podem se cadastrar direto na sala
 	$link = "http://localhost/euklides/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
 	
-	//cria a query para verificar quais jogos há na sala
-	$query_select_jogo = "SELECT j.cod_jogo, j.nome FROM jogo j, sala s, sala_jogo sj
-	WHERE s.cod_sala = $cod_sala AND s.cod_sala = sj.sala_id AND j.cod_jogo = sj.jogo_id";
-	//a variável $jogos recebe o resultado da execução da query
-	$jogos 		 = mysqli_query($connect,$query_select_jogo);
-// 	$array_jogos = mysqli_fetch_array($jogos);
+// 	//cria a query para verificar quais jogos há na sala
+// 	$query_select_jogo = "SELECT j.cod_jogo, j.nome FROM jogo j, sala s, sala_jogo sj
+// 	WHERE s.cod_sala = $cod_sala AND s.cod_sala = sj.sala_id AND j.cod_jogo = sj.jogo_id";
+// 	//a variável $jogos recebe o resultado da execução da query
+// 	$jogos 		 = mysqli_query($connect,$query_select_jogo);
+// // 	$array_jogos = mysqli_fetch_array($jogos);
 		
 	//cria a query para verificar quais alunos estão na sala
 	$query_alunos = "SELECT a.cod_aluno, a.nome FROM sala s, aluno a WHERE a.sala_id = s.cod_sala AND s.cod_sala = $cod_sala";
@@ -127,6 +129,8 @@ if (isset($_GET['cod_sala'])){
 			
 			<div class="div_jogos" id="div_jogos">
 			<?php
+				$jogosDAO  = new JogosDAO();
+				$jogos = $jogosDAO->ConsultarJogosDaSala($cod_sala);
 				//enquanto houver jogos, saão criadas as divs
 				while($dado_jogo = $jogos->fetch_array()) {?>
 			  	<form class="div_jogo" method="POST">
@@ -155,33 +159,126 @@ if (isset($_GET['cod_sala'])){
 				    	<th>Aluno</th>
 				    	<th>Jogo</th>
 				    	<th>Level</th>
+				    	<th>Número de acertos</th>
 				    	<th>Tempo gasto</th>
 				    	<th>Número de dicas</th>
+				    	<th>Número de erros</th>
+				    	<th>Número de tentativas</th>
+				  	</tr>
+				  	<?php
+				  	//na tabela deve ser registrado um registro para cada aluno e para cada jogo jogado
+				  	while($dado_aluno = $alunos->fetch_array()) {
+					  	// logo, enquanto houver jogos na sala deverá criar um registro
+				  		$cod_aluno = $dado_aluno['cod_aluno'];
+				  		$jogosDAO  = new JogosDAO();
+				  		$jogos = $jogosDAO->ConsultarJogosDaSala($cod_sala);
+				  						  		
+					  	while ($dado_jogo = $jogos->fetch_array()) {
+					  		//descobre o codigo de cada jogo cadastrado na sala
+					  		$cod_jogo = $dado_jogo['cod_jogo'];
+					  		
+					  		$query_tentativas = "SELECT COUNT(jg.aluno_id) AS num_tentativas 
+							FROM jogada jg 
+							WHERE jg.aluno_id = $cod_aluno AND jg.jogo_id = $cod_jogo";
+					  		$tentativas = mysqli_query($connect,$query_tentativas);
+					  		$array_tentativas = mysqli_fetch_array($tentativas);
+					  		$num_tentativas = $array_tentativas['num_tentativas'];
+					  		
+					  		//cria a query para verificar as jogadas de determinado aluno
+					  		$query_jogadas = "SELECT jg.tempo_gasto,
+					  		jg.num_dicas,
+					  		jg.num_acertos,
+					  		jg.num_erros,
+					  		jg.level,
+							jg.aluno_id,
+					  		j.nome
+					  		FROM jogada jg, jogo j
+					  		WHERE 
+							jg.aluno_id = $cod_aluno AND 
+							jg.jogo_id = j.cod_jogo AND 
+							jg.jogo_id = $cod_jogo AND 
+							jg.num_acertos =  
+								(SELECT MAX(num_acertos) FROM jogada WHERE jogo_id = $cod_jogo AND 
+								aluno_id = $cod_aluno)";
+					  		//a variável $jogadas recebe o resultado da execução da query
+					  		$jogadas       = mysqli_query($connect,$query_jogadas);
+					  		
+					  		//enquanto houver jogos, são criadas as divs
+					  		while ($dado_jogada = $jogadas->fetch_array()) {
+					  			if($num_tentativas > 0){
+						  		?>
+						  		<tr>		  		
+						  			<td><button type="submit" id="button_aluno_indiv" class="button_aluno_indiv" 
+						  			name = "button_aluno_indiv[]" value="<?php echo $cod_aluno;?>">
+						  			<?php echo $dado_aluno['nome'];?></button></td>
+						  			
+						    		<td><?php echo $dado_jogada['nome'];?></td>
+						    		<td><?php echo $dado_jogada['level'];?></td>
+						    		<td><?php echo $dado_jogada['num_acertos'];?></td>
+						    		<td><?php echo $dado_jogada['tempo_gasto'];?></td>
+						    		<td><?php echo $dado_jogada['num_dicas'];?></td>
+						    		<td><?php echo $dado_jogada['num_erros'];?></td>
+						    		<td><?php echo $num_tentativas;?></td>
+						  		</tr>
+					  			<?php } //fecha o while ?> 
+					  	<?php } //fecha o while ?> 
+					<?php } //fecha o while ?> 
+				<?php } //fecha o while ?> 
+				</table>
+				
+			</div>
+			
+			
+			<div class="div_aluno_individual" id="div_aluno_individual">
+			
+				<h2>Dados </h2>
+				
+				<table>
+					<tr>
+				    	<th>Jogo</th>
+				    	<th>Level</th>
 				    	<th>Número de acertos</th>
+				    	<th>Tempo gasto</th>
+				    	<th>Número de dicas</th>
 				    	<th>Número de erros</th>
 				  	</tr>
 				  	<?php
-					//enquanto houver jogos, saão criadas as divs
-				  	while($dado_aluno = $alunos->fetch_array()) {
-				  		//cria a query para verificar as jogadas de determinado aluno
-				  		$cod_aluno = $dado_aluno['cod_aluno'];
-				  		$query_jogadas = "SELECT jg.tempo_gasto, jg.num_dicas, jg.num_acertos, jg.num_erros, jg.level, j.nome
-						FROM jogada jg, jogo j WHERE jg.aluno_id = $cod_aluno AND jg.jogo_id = j.cod_jogo";
-				  		//a variável $jogadas recebe o resultado da execução da query
-				  		$jogadas       = mysqli_query($connect,$query_jogadas);
-				  		while ($dado_jogada = $jogadas->fetch_array()) {
-				  		?>
-				  		<tr>
-				  			<td><?php echo $dado_aluno['nome'];?></td>
-				    		<td><?php echo $dado_jogada['nome'];?></td>
-				    		<td><?php echo $dado_jogada['level'];?></td>
-				    		<td><?php echo $dado_jogada['tempo_gasto'];?></td>
-				    		<td><?php echo $dado_jogada['num_dicas'];?></td>
-				    		<td><?php echo $dado_jogada['num_acertos'];?></td>
-				    		<td><?php echo $dado_jogada['num_erros'];?></td>
-				  		</tr>
-				  	<?php } //fecha o while ?> 
-				  	<?php } //fecha o while ?> 
+				  	$jogosDAO  = new JogosDAO();
+				  	$jogos = $jogosDAO->ConsultarJogosDaSala($cod_sala);
+				  						  		
+					while ($dado_jogo = $jogos->fetch_array()) {
+					  	//descobre o codigo de cada jogo cadastrado na sala
+					  	$cod_jogo = $dado_jogo['cod_jogo'];
+					  		
+					  	//cria a query para verificar as jogadas de determinado aluno
+					  	$query_jogadas = "SELECT jg.tempo_gasto,
+					  	jg.num_dicas,
+					  	jg.num_acertos,
+					  	jg.num_erros,
+					  	jg.level,
+						jg.aluno_id,
+					  	j.nome
+					  	FROM jogada jg, jogo j
+					  	WHERE 
+						jg.aluno_id = 14 AND 
+						jg.jogo_id = j.cod_jogo AND 
+						jg.jogo_id = $cod_jogo";
+					  	//a variável $jogadas recebe o resultado da execução da query
+					  	$jogadas       = mysqli_query($connect,$query_jogadas);
+					  		
+					  	//enquanto houver jogos, são criadas as divs
+					  	while ($dado_jogada = $jogadas->fetch_array()) {
+						  	?>
+						  	<tr>
+						    	<td><?php echo $dado_jogada['nome'];?></td>
+						    	<td><?php echo $dado_jogada['level'];?></td>
+						    	<td><?php echo $dado_jogada['num_acertos'];?></td>
+						    	<td><?php echo $dado_jogada['tempo_gasto'];?></td>
+						    	<td><?php echo $dado_jogada['num_dicas'];?></td>
+						    	<td><?php echo $dado_jogada['num_erros'];?></td>
+						  	</tr> 
+						<?php } //fecha o while ?> 
+					<?php } //fecha o while ?>
 				</table>
 				
 			</div>
@@ -191,6 +288,19 @@ if (isset($_GET['cod_sala'])){
 	</html>
 	
 	<?php
+	
+	if(isset($_POST["button_aluno_indiv"])){
+		?>
+		<script type='text/javascript'>
+		//divs
+		document.getElementById("div_jogos").style.display = 'none';
+		document.getElementById("div_alunos").style.display = 'none';
+		document.getElementById("div_aluno_individual").style.display = 'block';
+		document.getElementById("div_gerenciar").style.display = 'none';
+		</script>
+		<?php 
+
+	}
 	
 	if (isset($_POST['deletar_jogo'])) {
 		foreach ($_POST['deletar_jogo'] as $cod_jogo){
@@ -207,6 +317,7 @@ if (isset($_GET['cod_sala'])){
 			//divs
 			document.getElementById("div_jogos").style.display = 'block';
 			document.getElementById("div_alunos").style.display = 'none';
+			document.getElementById("div_aluno_individual").style.display = 'none';
 			document.getElementById("div_gerenciar").style.display = 'none';
 			//botões
 			document.getElementById("button_jogos").style.backgroundColor = '#F2F2F2';
@@ -226,6 +337,7 @@ if (isset($_GET['cod_sala'])){
 			//divs
 			document.getElementById("div_jogos").style.display = 'none';
 			document.getElementById("div_alunos").style.display = 'block';
+			document.getElementById("div_aluno_individual").style.display = 'none';
 			document.getElementById("div_gerenciar").style.display = 'none';
 			//botões
 			document.getElementById("button_jogos").style.backgroundColor = '#7F7F7F';
@@ -245,6 +357,7 @@ if (isset($_GET['cod_sala'])){
 			//divs
 			document.getElementById("div_jogos").style.display = 'none';
 			document.getElementById("div_alunos").style.display = 'none';
+			document.getElementById("div_aluno_individual").style.display = 'none';
 			document.getElementById("div_gerenciar").style.display = 'block';
 			//botões
 			document.getElementById("button_jogos").style.backgroundColor = '#7F7F7F';

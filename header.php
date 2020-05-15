@@ -9,7 +9,7 @@
 		<form method="POST" action="header.php">
 			<p></p>
 			<input type="submit" value="Sair" id="button_sair" name="button_sair">
-			<input type="image" class="img_user" id="img_user" name="img_user" src="imgs/copy_icon.png" alt="Icone usuario">
+<!-- 			<input type="image" class="img_user" id="img_user" name="img_user" src="imgs/copy_icon.png" alt="Icone usuario"> -->
 			<label>Euklides</label>
 		</form>
 	</div>
