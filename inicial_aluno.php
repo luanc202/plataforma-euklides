@@ -40,7 +40,9 @@ if (isset($_SESSION['email_aluno'])){
 	<body>
 	
 		<div class="div_dash">
-			<h4>Início</h4>
+			<div class="atalhos">
+			<a href="inicial_aluno.php" class="link_sem_traco">Início</a>
+			</div>
 			<h2><?php echo $nome_sala; ?></h2>
 		  	
 		  	<?php 
@@ -52,7 +54,7 @@ if (isset($_SESSION['email_aluno'])){
 		  	<div class="div_jogo">
 		  		<a href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
 		  			<img class="imagem_jogo" src="imgs/<?php echo $dado_jogo['nome']; ?>.jpg" alt="imagem do jogo" ></a>
-		  		<a href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
+		  		<a class="link_sem_traco" href="<?php echo $dado_jogo['cod_jogo']; ?>/index.html?<?php echo $cod_aluno; ?>,<?php echo $cod_sala; ?>">
 		  		<p class="nome_jogo"><?php echo $dado_jogo['nome']; ?></p></a>
 		  		<a class="link_avaliar" 
 		  		href="avaliacao_view.php?cod_jogo=<?php echo $dado_jogo['cod_jogo']; ?>&cod_aluno=<?php echo $cod_aluno; ?>">Avaliar jogo</a>

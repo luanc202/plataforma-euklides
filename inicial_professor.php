@@ -1,10 +1,10 @@
 <?php
 
-//caso o professor tenha criado uma nova sala, a vari�vel $nome_sala ir� receber o nome digitado
+//caso o professor tenha criado uma nova sala, a variável $nome_sala irá receber o nome digitado
 $nome_sala = $_POST['input_nome_sala'];
-//caso o professor tenha criado uma nova sala, a vari�vel $descricao ir� receber a descri��o digitada
+//caso o professor tenha criado uma nova sala, a variável $descricao irá receber a descrição digitada
 $descricao = $_POST['input_descricao'];
-//caso o professor tenha criado uma nova sala, a vari�vel $disciplina ir� receber a disciplina digitada
+//caso o professor tenha criado uma nova sala, a variável $disciplina irá receber a disciplina digitada
 $disciplina = $_POST['input_disciplina'];
 //recebe o email enviado
 session_start();

@@ -16,6 +16,16 @@ h4 {
 	margin: 10px;
 }
 
+.atalhos{
+	background-color: rgba(0,0,0,0.05);
+	padding: 10px;
+	margin: 10px;
+}
+
+a {
+	text-decoration: none;
+}
+
 h2 {
 	padding: 10px;
 	margin: 10px;

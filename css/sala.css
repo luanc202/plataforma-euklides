@@ -10,10 +10,14 @@ body {
   padding-left: 80px;
 }
 
-h4 {
+.atalhos{
 	background-color: rgba(0,0,0,0.05);
-	.padding: 10px;
+	padding: 10px;
 	margin: 10px;
+}
+
+a {
+	text-decoration: none;
 }
 
 h2 {

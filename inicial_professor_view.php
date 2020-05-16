@@ -36,7 +36,9 @@
 	</head>
 	<body>
 		<div class="div_dash">
-			<h4>Inicio</h4>
+			<div class="atalhos">
+			<a href="inicial_professor_view.php">Início</a>
+			</div>
 			<h2>Salas</h2>
 		  	
 		  	<?php 
@@ -70,7 +72,7 @@
 					<label class="labels">Disciplina</label><br>
 					<input class="campo" type="text" name="input_disciplina" id="input_disciplina"><br>
 					<p class=margin_labels></p>
-					<label class="labels">Descri��o (opcional)</label><br>
+					<label class="labels">Descrição (opcional)</label><br>
 					<input class="campo" type="text" name="input_descricao" id="input_descricao"><br>
 					<p class=margin_labels></p>
 					<label class="labels">Objetos de aprendizagem</label>

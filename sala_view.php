@@ -52,7 +52,11 @@ if (isset($_GET['cod_sala'])){
 	</head>
 	<body>
 		<div class="div_dash">
-			<h4>Início > <?php echo $nome_sala; ?></h4>
+			<div class="atalhos">
+			<a href="inicial_professor_view.php">Início ></a>
+			<a href="sala_view.php?cod_sala=<?php echo $cod_sala;?>&cod_prof=<?php echo $id_professor;?>"><?php echo $nome_sala; ?></a>
+			</div>
+			
 			<h2><?php echo $nome_sala; ?></h2>
 			
 			<div class="div_link">
