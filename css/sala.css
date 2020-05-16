@@ -193,6 +193,14 @@ tr:nth-child(even) {
 	text-decoration: underline;
 }
 
+.voltar_alunos {
+	padding: 10px 15px 10px 15px;
+	width: 20%;
+	background-color:#7F7F7F;
+	border-style: solid;
+	color: white;
+}
+
 .div_gerenciar {
 	background-color: rgba(0,0,0,0.05);
 	width: 100%;
