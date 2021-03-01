@@ -1,5 +1,21 @@
+@font-face {
+	font-family: Euklides;
+	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Regular.otf);
+}
+
+@font-face {
+	font-family: Euklides-bold;
+	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Bold.otf);
+}
+
+@font-face {
+	font-family: Euklides-italic;
+	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-SemiboldItalic.otf);
+}
+
+
 body {
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: Euklides;
 }
 
 .div_dash {
@@ -18,16 +34,21 @@ body {
 
 a {
 	text-decoration: none;
+	color: #63438e;
 }
 
 h2 {
 	padding: 10px;
 	margin: 10px;
+	color: #63438e;
+	font-family: Euklides-bold;
 }
 
 h3 {
 	padding: 10px;
 	margin: 10px;
+	color: #63438e;
+	font-family: Euklides-bold;
 }
 
 .p_link {	
@@ -72,8 +93,8 @@ h3 {
 	float: left;
 	width: 33.3%;
 	padding: 15px;
-	background-color:#7F7F7F;
 	border-style: solid;
+	background-color:#d67d31;
 	color: white;
 }
 
@@ -81,7 +102,7 @@ h3 {
 	float: left;
 	width: 33.3%;
 	padding: 15px;
-	background-color:#7F7F7F;
+	background-color: #d67d31;
 	border-style: solid;
 	color: white;
 }
@@ -101,7 +122,8 @@ h3 {
 	height: 200px;
 	margin: 25px;
 	float: left;
-	box-shadow: 3px 3px 3px rgba(0,0,0,0.5)
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+	background: white;
 }
 
 .nome_jogo {
@@ -109,10 +131,9 @@ h3 {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	margin-right: 10px;
-	font-weight: bold;
 	font-size: 110%;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	color: rgba(0,0,0,0.7);
+	font-family: Euklides-bold;
+	color: #63438e;
 }
 
 .imagem_jogo {
@@ -132,7 +153,7 @@ h3 {
 	height: 30px;
 	margin:0 auto;
     display: block;
-    background-image: url(http://localhost/euklides/plataforma-euklides/imgs/delete_icon.png);
+    background-image: url(http://localhost/plataforma-euklides/imgs/delete_icon.png);
     background-size: 25px 25px;
     border-style: solid;
 	color: black;
@@ -195,13 +216,15 @@ tr:nth-child(even) {
 	border-style: solid;
 	width: 100%;
 	text-decoration: underline;
+	background-color:#d67d31;
+	color: white;
 }
 
 .voltar_alunos {
 	padding: 10px 15px 10px 15px;
 	width: 20%;
-	background-color:#7F7F7F;
 	border-style: solid;
+	background-color:#d67d31;
 	color: white;
 }
 
@@ -230,6 +253,8 @@ tr:nth-child(even) {
 	margin-right: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	background-color:#d67d31;
+	color: white;
 }
 
 .margin_campos {

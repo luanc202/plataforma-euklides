@@ -16,7 +16,7 @@ if (isset($_GET['cod_sala'])){
 	$id_professor = $_GET['cod_prof'];
 	//é criado o link para a tela cadastro_view e adicionado como parâmetro o nome da sala
 	//dessa forma, os alunos podem se cadastrar direto na sala
-	$link = "http://localhost/euklides/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
+	$link = "http://localhost/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
 	
 // 	//cria a query para verificar quais jogos há na sala
 // 	$query_select_jogo = "SELECT j.cod_jogo, j.nome FROM jogo j, sala s, sala_jogo sj
@@ -246,11 +246,11 @@ if (isset($_GET['cod_sala'])){
 					document.getElementById("div_aluno_individual").style.display = 'block';
 					document.getElementById("div_gerenciar").style.display = 'none';
 					//botões
-					document.getElementById("button_jogos").style.backgroundColor = '#7F7F7F';
+					document.getElementById("button_jogos").style.backgroundColor = '#d67d31';
 					document.getElementById("button_jogos").style.color = 'white';
 					document.getElementById("button_alunos").style.backgroundColor = '#F2F2F2';
 					document.getElementById("button_alunos").style.color = 'black';
-					document.getElementById("button_gerenciar").style.backgroundColor = '#7F7F7F';
+					document.getElementById("button_gerenciar").style.backgroundColor = '#d67d31';
 					document.getElementById("button_gerenciar").style.color = 'white';
 					</script>
 					<?php 
@@ -342,9 +342,9 @@ if (isset($_GET['cod_sala'])){
 			//botões
 			document.getElementById("button_jogos").style.backgroundColor = '#F2F2F2';
 			document.getElementById("button_jogos").style.color = 'black';
-			document.getElementById("button_alunos").style.backgroundColor = '#7F7F7F';
+			document.getElementById("button_alunos").style.backgroundColor = '#d67d31';
 			document.getElementById("button_alunos").style.color = 'white';
-			document.getElementById("button_gerenciar").style.backgroundColor = '#7F7F7F';
+			document.getElementById("button_gerenciar").style.backgroundColor = '#d67d31';
 			document.getElementById("button_gerenciar").style.color = 'white';
 		</script>
 		<?php
@@ -360,11 +360,11 @@ if (isset($_GET['cod_sala'])){
 			document.getElementById("div_aluno_individual").style.display = 'none';
 			document.getElementById("div_gerenciar").style.display = 'none';
 			//botões
-			document.getElementById("button_jogos").style.backgroundColor = '#7F7F7F';
+			document.getElementById("button_jogos").style.backgroundColor = '#d67d31';
 			document.getElementById("button_jogos").style.color = 'white';
 			document.getElementById("button_alunos").style.backgroundColor = '#F2F2F2';
 			document.getElementById("button_alunos").style.color = 'black';
-			document.getElementById("button_gerenciar").style.backgroundColor = '#7F7F7F';
+			document.getElementById("button_gerenciar").style.backgroundColor = '#d67d31';
 			document.getElementById("button_gerenciar").style.color = 'white';
 		</script>
 		<?php
@@ -380,9 +380,9 @@ if (isset($_GET['cod_sala'])){
 			document.getElementById("div_aluno_individual").style.display = 'none';
 			document.getElementById("div_gerenciar").style.display = 'block';
 			//botões
-			document.getElementById("button_jogos").style.backgroundColor = '#7F7F7F';
+			document.getElementById("button_jogos").style.backgroundColor = '#d67d31';
 			document.getElementById("button_jogos").style.color = 'white';
-			document.getElementById("button_alunos").style.backgroundColor = '#7F7F7F';
+			document.getElementById("button_alunos").style.backgroundColor = '#d67d31';
 			document.getElementById("button_alunos").style.color = 'white';
 			document.getElementById("button_gerenciar").style.backgroundColor = '#F2F2F2';
 			document.getElementById("button_gerenciar").style.color = 'black';

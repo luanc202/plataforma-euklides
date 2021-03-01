@@ -16,6 +16,8 @@ $id_professor = $_SESSION['id_professor_index'];
 //os dados digitados na cadastro_view.php s�o coletados
 $nome = $_POST['nome'];
 $email = $_POST['email'];
+$idade = $_POST['idade'];
+$genero = $_POST['genero'];
 //o md5 serve para criptograr a senha
 $senha = MD5($_POST['senha']);
 $rsenha = MD5($_POST['rsenha']);
@@ -46,7 +48,7 @@ $email_professor_array = $array_professor['email'];
 
 //verifica se h� algum campo vazio
 if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == "" || $senha == null
-		|| $rsenha == "" || $rsenha == null){
+    || $rsenha == "" || $rsenha == null|| $idade == "" || $idade == null|| $genero == "" || $genero == null){
 	//se houver algum campo vazio, ir� emitir uma janela com a mensagem e o usu�rio ser� encaminhado para a p�gina
 	//cadastro.view
 	echo"<script language='javascript' type='text/javascript'>
@@ -74,7 +76,8 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 		if ($existe_sala == 1){
 				
 			//query para ser inserido na tabela aluno, incluindo a sala em que ele est�
-			$query = "INSERT INTO aluno (nome,email,senha,sala_id) VALUES ('$nome','$email','$senha',$cod_sala)";
+			$query = "INSERT INTO aluno (nome,email,senha,sala_id,idade,genero) VALUES 
+                        ('$nome','$email','$senha',$cod_sala,'$idade',$genero)";
 			//a vari�vel $insert recebe o resultado da execu��o da query
 			$insert = mysqli_query($connect,$query);
 			
@@ -92,7 +95,8 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 		//se n�o houver uma sala na URL, significa que quem est� sendo cadastrado � um professor
 		} else {
 			//query para ser inserido na tabela professor
-			$query = "INSERT INTO professor (nome,email,senha) VALUES ('$nome','$email','$senha')";
+			$query = "INSERT INTO professor (nome,email,senha,idade,genero) VALUES 
+                        ('$nome','$email','$senha','$idade',$genero)";
 			//a vari�vel $insert recebe o resultado da execu��o da query
 			$insert = mysqli_query($connect,$query);
 			

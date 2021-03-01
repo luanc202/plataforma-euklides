@@ -1,5 +1,20 @@
+@font-face {
+	font-family: Euklides;
+	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Regular.otf);
+}
+
+@font-face {
+	font-family: Euklides-bold;
+	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Bold.otf);
+}
+
+@font-face {
+	font-family: Euklides-italic;
+	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-SemiboldItalic.otf);
+}
+
 body {
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: Euklides;
 }
 
 .div_dash {
@@ -14,6 +29,7 @@ h4 {
 	background-color: rgba(0,0,0,0.05);
 	padding: 10px;
 	margin: 10px;
+	color: #63438e;
 }
 
 .atalhos{
@@ -24,11 +40,14 @@ h4 {
 
 a {
 	text-decoration: none;
+	color: #63438e;
 }
 
 h2 {
 	padding: 10px;
 	margin: 10px;
+	font-family: Euklides-bold;
+	color: #63438e;
 }
 
 .div_sala {
@@ -66,8 +85,8 @@ h2 {
 	margin-right: 10px;
 	font-weight: bold;
 	font-size: 110%;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	color: rgba(0,0,0,0.7);
+	font-family: Euklides-bold;;
+	color: #63438e;
 }
 
 .descricao {
@@ -76,9 +95,8 @@ h2 {
 	margin-bottom: 10px;
 	margin-right: 10px;
 	font-size: 90%;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: Euklides-italic;
 	color: rgba(0,0,0,0.6);
-	font-style: italic;
 }
 
 .imagem_nova_sala {
@@ -146,4 +164,6 @@ h2 {
 	padding-right: 15px;
 	margin:0 auto;
     display:block;
+    background-color: #d67d31;
+	color: white;
 }

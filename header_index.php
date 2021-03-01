@@ -7,9 +7,10 @@
 <body>
 	<div class="topnav">
 		<form method="POST" action="header.php">
-			<p></p>
-			<label>Euklides</label>
+			<img alt="Euklides" src="http://localhost/plataforma-euklides/imgs/euklides_marca.png" width=160px height=60px>
 		</form>
 	</div>
 </body>
 </html>
+
+<!-- header para a tela de login/cadastro -->

@@ -1,6 +1,11 @@
+@font-face {
+	font-family: Euklides;
+	src: url(http://localhost/plataforma-euklides/fontes/Titillium-Regular.otf);
+}
+
 body {
 	margin: 0;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: Euklides;
 	background-color: #F2F2F2;
 }
 
@@ -12,14 +17,16 @@ body {
 h1 {
 	margin: 20px 20px 80px 20px;
 	padding: 15px;
-	background-color: white;
+	background-color: #d67d31;
 	border: 1px solid black;
+	color: white;
+	text-align: center;
 }
 
 .div_pergunta {
 	background-color: white;
 	margin: 20px;
-	border: 1px solid black;
+	border: 1px solid orange;
 }
 
 .p_pergunta {
@@ -29,7 +36,8 @@ h1 {
 .salvar {
 	padding: 10px 15px 10px 15px;
 	margin:0 auto;
-	background-color: white;
+	background-color: #d67d31;
+	color: white;
 	border: 1px solid black;
     display:block;
 }

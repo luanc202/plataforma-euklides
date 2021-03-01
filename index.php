@@ -32,6 +32,18 @@ include 'header_index.php';
 			<p class=margin_labels></p>
 			<label>E-mail</label><br><input class="campo" type="text" name="email" id="email"><br>
 			<p class=margin_labels></p>
+			<label>Idade</label><br><input class="campo" type="text" name="idade" id="idade"><br>
+			<p class=margin_labels></p>
+			
+			<label>Sexo</label>
+			<br /><input class="radiobutton" type="radio" id="1" name="genero" 
+						value="1">
+			<label class="generoclass" for="1">Feminino</label><br />
+			<br /><input class="radiobutton" type="radio" id="2" name="genero" 
+						value="2">
+			<label class="generoclass" for="2">Masculino</label><br />
+			
+			<p class=margin_labels></p>
 			<label>Senha</label><br><input class="campo" type="password" name="senha" id="senha"><br>
 			<p class=margin_labels></p>
 			<label>Confirmar a senha</label><br><input class="campo" type="password" name="rsenha" id="rsenha"><br>
@@ -50,7 +62,7 @@ include 'header_index.php';
 			</script>
 			<?php 
 			//verifica se h� o par�metro a��o na url e � igual a cadastro
-		} else if ($_GET['acao'] == 'cadastro'){
+		} else if (isset($_GET['acao']) && $_GET['acao'] == 'cadastro'){
 			//esconde o formul�rio do login e mostra o formul�rio do cadastro
 			?>
 			<script type='text/javascript'>
@@ -59,7 +71,7 @@ include 'header_index.php';
 			</script>
 			<?php 
 			//verifica se h� o par�metro a��o na url e � igual a login
-		} else if ($_GET['acao'] == 'login'){
+		} else if (isset($_GET['acao']) && $_GET['acao'] == 'login'){
 			//esconde o formul�rio do cadastro e mostra o formul�rio do login
 			?>
 			<script type='text/javascript'>
@@ -92,7 +104,7 @@ if(isset($_POST["button_login"])){
 		//bot�es
 		document.getElementById("button_login").style.backgroundColor = '#F2F2F2';
 		document.getElementById("button_login").style.color = 'black';
-		document.getElementById("button_cadastro").style.backgroundColor = '#7F7F7F';
+		document.getElementById("button_cadastro").style.backgroundColor = '#d67d31';
 		document.getElementById("button_cadastro").style.color = 'white';
 	</script>
 	<?php
@@ -106,7 +118,7 @@ if(isset($_POST["button_cadastro"])){
 		document.getElementById("form_login").style.visibility = 'hidden';
 		document.getElementById("form_cadastro").style.visibility = 'visible';
 		//bot�es
-		document.getElementById("button_login").style.backgroundColor = '#7F7F7F';
+		document.getElementById("button_login").style.backgroundColor = '#d67d31';
 		document.getElementById("button_login").style.color = 'white';
 		document.getElementById("button_cadastro").style.backgroundColor = '#F2F2F2';
 		document.getElementById("button_cadastro").style.color = 'black';

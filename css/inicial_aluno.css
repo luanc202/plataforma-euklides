@@ -1,5 +1,20 @@
+@font-face {
+	font-family: Euklides;
+	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Regular.otf);
+}
+
+@font-face {
+	font-family: Euklides-bold;
+	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Bold.otf);
+}
+
+@font-face {
+	font-family: Euklides-italic;
+	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-SemiboldItalic.otf);
+}
+
 body {
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: Euklides;
 }
 
 .div_dash {
@@ -24,11 +39,14 @@ h4 {
 
 .link_sem_traco {
 	text-decoration: none;
+	color: #63438e;
 }
 
 h2 {
 	padding: 10px;
 	margin: 10px;
+	color: #63438e;
+	font-family: Euklides-bold;
 }
 
 .div_jogo {
@@ -58,8 +76,8 @@ h2 {
 	margin-right: 10px;
 	font-weight: bold;
 	font-size: 110%;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	color: rgba(0,0,0,0.7);
+	font-family: Euklides-bold;;
+	color: #63438e;
 }
 
 .link_avaliar {
@@ -68,7 +86,6 @@ h2 {
 	margin-bottom: 10px;
 	margin-right: 10px;
 	font-size: 90%;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: Euklides-italic;
 	color: rgba(0,0,0,0.6);
-	font-style: italic;
 }
