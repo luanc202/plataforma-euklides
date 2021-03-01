@@ -166,6 +166,17 @@ INSERT INTO `sala_jogo` (`cod_sala_jogo`, `sala_id`, `jogo_id`) VALUES
 (5, 54, 1),
 (6, 54, 2);
 
+CREATE TABLE `avaliacao` (
+  `cod_avaliacao` int(11) NOT NULL,
+  `num_pergunta` int(11) NOT NULL,
+  `num_resposta` int(11) NOT NULL,
+  `aluno_id` int(11) NOT NULL,
+  `jogo_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `avaliacao` (`cod_avaliacao`, `num_pergunta`, `num_resposta`, `aluno_id`, `jogo_id`) VALUES
+(1, 1, 1, 14, 1);
+
 --
 -- Índices para tabelas despejadas
 --
@@ -218,6 +229,14 @@ ALTER TABLE `sala_jogo`
   ADD PRIMARY KEY (`cod_sala_jogo`),
   ADD KEY `fk_sala_jogo` (`jogo_id`),
   ADD KEY `fk_jogo_sala` (`sala_id`);
+  
+ALTER TABLE `avaliacao`
+  ADD PRIMARY KEY (`cod_avaliacao`),
+  ADD KEY `fk_avaliacao_aluno` (`aluno_id`),
+  ADD KEY `fk_avaliacao_jogo` (`jogo_id`);
+  
+ALTER TABLE `avaliacao`
+MODIFY `cod_avaliacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -286,6 +305,12 @@ ALTER TABLE `sala`
 --
 -- Limitadores para a tabela `sala_jogo`
 --
+
+ALTER TABLE `avaliacao`
+  ADD CONSTRAINT `fk_avaliacao_aluno` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`cod_aluno`),
+  ADD CONSTRAINT `fk_avaliacao_jogo` FOREIGN KEY (`jogo_id`) REFERENCES `jogo` (`cod_jogo`);
+  
+  
 ALTER TABLE `sala_jogo`
   ADD CONSTRAINT `fk_jogo_sala` FOREIGN KEY (`sala_id`) REFERENCES `sala` (`cod_sala`),
   ADD CONSTRAINT `fk_sala_jogo` FOREIGN KEY (`jogo_id`) REFERENCES `jogo` (`cod_jogo`);
