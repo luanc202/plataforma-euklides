@@ -8,7 +8,8 @@ if (isset($_SESSION['email_aluno'])){
 	//recebe o email do aluno como cookie da página login.php
 	$email = $_SESSION['email_aluno'];
 	//cria a conex�o
-	$connect = mysqli_connect('localhost','root','admin');
+	//$connect = mysqli_connect('localhost','root','admin');
+	$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 	//seleciona o banco de dados euklides
 	$db = mysqli_select_db($connect,'euklides');
 	
@@ -68,7 +69,7 @@ if (isset($_SESSION['email_aluno'])){
 	
 <?php 
 } else {
-	header("location: http://localhost/euklides/plataforma-euklides/index.php");
+	header("location: http://www.darti.ufma.br/plataforma-euklides/index.php");
 }
 ?>
 

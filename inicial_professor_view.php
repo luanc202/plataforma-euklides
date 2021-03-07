@@ -10,8 +10,9 @@
 		$email = $_SESSION['email_professor'];
 		$_SESSION['email_professor'] = $email; 
 		//cria a conex�o
-		$connect = mysqli_connect('localhost','root','admin');
-		//seleciona o banco de dados euklides
+		//$connect = mysqli_connect('localhost','root','admin');
+		$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+    	//seleciona o banco de dados euklides
 		$db = mysqli_select_db($connect,'euklides');
 		
 		//seleciona o nome de todas as salas criadas pelo professor do email recebido
@@ -124,7 +125,7 @@
 	<?php 
 	
 	} else {
-		header("location: http://localhost/euklides/plataforma-euklides/index.php");
+		header("location: http://www.darti.ufma.br/plataforma-euklides/index.php");
 	}
 		
 	?>

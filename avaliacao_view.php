@@ -3,7 +3,8 @@
 if(isset($_GET['cod_jogo'])){
 	include 'header.php';
 	//cria a conexão
-	$connect = mysqli_connect('localhost','root','admin');
+	//$connect = mysqli_connect('localhost','root','admin');
+	$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 	//seleciona o banco de dados euklides
 	$db = mysqli_select_db($connect,'euklides');
 	
@@ -69,7 +70,8 @@ if(isset($_GET['cod_jogo'])){
 	</html>
 <?php 
 } else {
-	header("location: http://localhost/euklides/plataforma-euklides/index.php");
+	//header("location: http://localhost/plataforma-euklides/index.php");
+    header("location: http://www.darti.ufma.br/plataforma-euklides/index.php");
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect('localhost','root','admin','euklides');
+$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 
 if(mysqli_connect_error()){
 	echo "1: Connection failed";
@@ -18,8 +18,8 @@ $level = $_POST["level"];
 
 $query = "INSERT INTO `jogada` (`tempo_gasto`,`num_dicas`,`num_acertos`,`num_erros`,`level`,`aluno_id`,`sala_id`,`jogo_id`) 
 VALUES ($tempo_gasto,$num_dicas,$num_acertos,$num_erros,'$level',$cod_aluno,$cod_sala,$cod_jogo);";
-//a variável $insert recebe o resultado da execução da query
-$insert = mysqli_query($con,$query) or die("2: Insert failed");
+//a variï¿½vel $insert recebe o resultado da execuï¿½ï¿½o da query
+$insert = mysqli_query($connect,$query) or die("2: Insert failed");
 
 echo "0";
 ?>

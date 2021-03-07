@@ -4,7 +4,8 @@ $email = $_POST['email'];
 $entrar = $_POST['entrar'];
 $senha = md5($_POST['senha']);
 //criar a conexão
-$connect = mysqli_connect('localhost','root','admin');
+//$connect = mysqli_connect('localhost','root','admin');
+$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 //seleciona o banco de dados
 $db = mysqli_select_db($connect,'euklides');
 

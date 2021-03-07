@@ -23,7 +23,8 @@
 	if (isset($_POST["button_sair"])) {
 		session_start();
 		session_destroy();
-		header("location: http://localhost/plataforma-euklides/index.php");
+		//header("location: http://localhost/plataforma-euklides/index.php");
+		header("location: http:///www.darti.ufma.br/plataforma-euklides/index.php");
 	}
 
 ?>

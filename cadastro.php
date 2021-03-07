@@ -22,7 +22,8 @@ $genero = $_POST['genero'];
 $senha = MD5($_POST['senha']);
 $rsenha = MD5($_POST['rsenha']);
 //criada a conexão com o banco
-$connect = mysqli_connect('localhost','root','admin');
+//$connect = mysqli_connect('localhost','root','admin');
+$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 //o banco de dados selecionado � o euklides
 $db = mysqli_select_db($connect,'euklides');
 
