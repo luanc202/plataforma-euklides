@@ -1,6 +1,7 @@
 <?php
 
-$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+//$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+$connect = mysqli_connect('localhost','root','admin');
 
 if(mysqli_connect_error()){
 	echo "1: Connection failed";

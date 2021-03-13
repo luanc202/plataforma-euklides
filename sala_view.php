@@ -7,8 +7,8 @@ if (isset($_GET['cod_sala'])){
 	include 'dao/alunos_dao.php';
 	
 	//cria a conexão
-	//$connect = mysqli_connect('localhost','root','admin');
-	$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+	$connect = mysqli_connect('localhost','root','admin');
+	//$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 	//seleciona o banco de dados euklides
 	$db = mysqli_select_db($connect,'euklides');
 	
@@ -17,7 +17,8 @@ if (isset($_GET['cod_sala'])){
 	$id_professor = $_GET['cod_prof'];
 	//é criado o link para a tela cadastro_view e adicionado como parâmetro o nome da sala
 	//dessa forma, os alunos podem se cadastrar direto na sala
-	$link = "http://www.darti.ufma.br/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
+	//$link = "http://www.darti.ufma.br/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
+	$link = "http://localhost/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
 	
 // 	//cria a query para verificar quais jogos há na sala
 // 	$query_select_jogo = "SELECT j.cod_jogo, j.nome FROM jogo j, sala s, sala_jogo sj
@@ -430,7 +431,7 @@ if (isset($_GET['cod_sala'])){
 	}
 	
 } else {
-	header("location: http://www.darti.ufma.br/plataforma-euklides/index.php");
+    header("Location:index.php");
 }
 ?>
 	

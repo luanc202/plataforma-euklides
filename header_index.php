@@ -7,8 +7,8 @@
 <body>
 	<div class="topnav">
 		<form method="POST" action="header.php">
-		<!-- 	<img alt="Euklides" src="http://localhost/plataforma-euklides/imgs/euklides_marca.png" width=160px height=60px> -->
-		<img alt="Euklides" src="http://www.darti.ufma.br/plataforma-euklides/imgs/euklides_marca.png" width=160px height=60px>
+		 <img alt="Euklides" src="http://localhost/plataforma-euklides/imgs/euklides_marca.png" width=160px height=60px> 
+		<!--<img alt="Euklides" src="http://www.darti.ufma.br/plataforma-euklides/imgs/euklides_marca.png" width=160px height=60px>-->
 		</form>
 	</div>
 </body>

@@ -3,8 +3,8 @@
 if(isset($_GET['cod_jogo'])){
 	include 'header.php';
 	//cria a conexão
-	//$connect = mysqli_connect('localhost','root','admin');
-	$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+	$connect = mysqli_connect('localhost','root','admin');
+	//$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 	//seleciona o banco de dados euklides
 	$db = mysqli_select_db($connect,'euklides');
 	
@@ -41,25 +41,69 @@ if(isset($_GET['cod_jogo'])){
 		<form class="div_dash" method="POST" action="avaliacao.php">
 			<h1>Avaliação <?php echo $nome_jogo;?></h1>
 			
-			<?php foreach ( $perguntas as $p ) {?>
-			<div class="div_pergunta">
-				<p class="p_pergunta"><?php echo $p->id?> - <?php echo $p->texto?></p>
-				<br /><input class="labels" type="checkbox" id="1" name="respostas_avaliacao[]" 
-								value="1,<?php echo $p->id?>">
-				<label for="1"> Discordo totalmente</label><br />
-				<br /><input class="labels" type="checkbox" id="2" name="respostas_avaliacao[]" 
-								value="2,<?php echo $p->id?>">
-				<label for="2"> Discordo</label><br />
-				<br /><input class="labels" type="checkbox" id="3" name="respostas_avaliacao[]" 
-								value="3,<?php echo $p->id?>">
-				<label for="3"> Nem discordo, nem concordo</label><br />
-				<br /><input class="labels" type="checkbox" id="4" name="respostas_avaliacao[]" 
-								value="4,<?php echo $p->id?>">
-				<label for="4"> Concordo</label><br />
-				<br /><input class="labels" type="checkbox" id="5" name="respostas_avaliacao[]" 
-								value="5,<?php echo $p->id?>">
-				<label for="5"> Concordo totalmente</label><br />
-			</div>
+			<?php foreach ( $perguntas as $p ) {
+			    // pergunta referente a frequência de jogo
+			    if($p->id == 1){?>
+			    	<div class="div_pergunta">
+        				<p class="p_pergunta"><?php echo $p->id?> - <?php echo $p->texto?></p>
+        				<br /><input class="labels" type="radio" id="1" name="selected-<?php echo $p->id?>" 
+        								value="1">
+        				<label for="1"> Nunca: nunca jogo.</label><br />
+        				<br /><input class="labels" type="radio" id="2" name="selected-<?php echo $p->id?>" 
+        								value="2">
+        				<label for="2"> Raramente: jogo de tempos em tempos.</label><br />
+        				<br /><input class="labels" type="radio" id="3" name="selected-<?php echo $p->id?>" 
+        								value="3">
+        				<label for="3"> Mensalmente: jogo pelo menos uma vez por mês.</label><br />
+        				<br /><input class="labels" type="radio" id="4" name="selected-<?php echo $p->id?>" 
+        								value="4">
+        				<label for="4"> Semanalmente: jogo pelo menos uma vez por semana.</label><br />
+        				<br /><input class="labels" type="radio" id="5" name="selected-<?php echo $p->id?>" 
+        								value="5">
+        				<label for="5"> Diariamente: jogo todos os dias.</label><br />
+        			</div>
+			    <?php }
+			    // pergunta referente a faixa etária
+			    else if ($p->id == 2){ ?>
+			    	<div class="div_pergunta">
+        				<p class="p_pergunta"><?php echo $p->id?> - <?php echo $p->texto?></p>
+        				<br /><input class="labels" type="radio" id="1" name="selected-<?php echo $p->id?>" 
+        								value="1">
+        				<label for="1"> Menos de 18 anos</label><br />
+        				<br /><input class="labels" type="radio" id="2" name="selected-<?php echo $p->id?>" 
+        								value="2">
+        				<label for="2"> 18 a 28 anos</label><br />
+        				<br /><input class="labels" type="radio" id="3" name="selected-<?php echo $p->id?>" 
+        								value="3">
+        				<label for="3"> 29 a 39 anos</label><br />
+        				<br /><input class="labels" type="radio" id="4" name="selected-<?php echo $p->id?>" 
+        								value="4">
+        				<label for="4"> 40 a 50 anos</label><br />
+        				<br /><input class="labels" type="radio" id="5" name="selected-<?php echo $p->id?>" 
+        								value="5">
+        				<label for="5"> Mais de 50 anos</label><br />
+        			</div>
+			    <?php }
+			    else {?>
+        			<div class="div_pergunta">
+        				<p class="p_pergunta"><?php echo $p->id?> - <?php echo $p->texto?></p>
+        				<br /><input class="labels" type="radio" id="1" name="selected-<?php echo $p->id?>" 
+        								value="1">
+        				<label for="1"> Discordo totalmente</label><br />
+        				<br /><input class="labels" type="radio" id="2" name="selected-<?php echo $p->id?>" 
+        								value="2">
+        				<label for="2"> Discordo</label><br />
+        				<br /><input class="labels" type="radio" id="3" name="selected-<?php echo $p->id?>" 
+        								value="3">
+        				<label for="3"> Nem discordo, nem concordo</label><br />
+        				<br /><input class="labels" type="radio" id="4" name="selected-<?php echo $p->id?>" 
+        								value="4">
+        				<label for="4"> Concordo</label><br />
+        				<br /><input class="labels" type="radio" id="5" name="selected-<?php echo $p->id?>" 
+        								value="5">
+        				<label for="5"> Concordo totalmente</label><br />
+        			</div>
+				<?php }?>
 			<?php }?>
 			
 			<input type="submit" value="Salvar" id="salvar" class="salvar" name="salvar"><br>
@@ -70,8 +114,7 @@ if(isset($_GET['cod_jogo'])){
 	</html>
 <?php 
 } else {
-	//header("location: http://localhost/plataforma-euklides/index.php");
-    header("location: http://www.darti.ufma.br/plataforma-euklides/index.php");
+    header("Location:index.php");
 }
 
 ?>
