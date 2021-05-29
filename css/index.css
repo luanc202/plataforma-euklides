@@ -1,11 +1,12 @@
 @font-face {
 	font-family: Euklides;
-	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Regular.otf);
+	src: url(http://www.darti.ufma.br/plataforma-euklides/fontes/Titillium/Titillium-Regular.otf);
 }
 
 body {
 	margin: 0;
 	font-family: Euklides;
+	width:100%;
 	/* background-image: url('http://localhost/plataforma-euklides/imgs/grafismo.png'); */
 }
 
@@ -34,7 +35,7 @@ body {
 
 .form_cadastro {
   	width: 100%;
-  	height: 480px;
+  	height: 450px;
   	position: relative;
   	top: -185px;
   	border: 1px solid black;
@@ -51,6 +52,20 @@ body {
 	display: flex;
 	justify-content: center;
 }
+
+@media only screen and (max-width: 800px) {
+	.div_login_cadastro{
+		margin: auto;
+		width: 50%;
+	}
+	.form_buttons {
+		margin: auto;
+		width: 50%;
+		display: flex;
+		justify-content: center;
+	}
+}
+
 
 .button_login {
 	float:left;

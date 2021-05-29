@@ -1,16 +1,16 @@
 @font-face {
 	font-family: Euklides;
-	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Regular.otf);
+	src: url(http://www.darti.ufma.br/plataforma-euklides/fontes/Titillium/Titillium-Regular.otf);
 }
 
 @font-face {
 	font-family: Euklides-bold;
-	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Bold.otf);
+	src: url(http://www.darti.ufma.br/plataforma-euklides/fontes/Titillium/Titillium-Bold.otf);
 }
 
 @font-face {
 	font-family: Euklides-italic;
-	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-SemiboldItalic.otf);
+	src: url(http://www.darti.ufma.br/plataforma-euklides/fontes/Titillium/Titillium-SemiboldItalic.otf);
 }
 
 body {

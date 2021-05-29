@@ -16,16 +16,15 @@ $id_professor = $_SESSION['id_professor_index'];
 //os dados digitados na cadastro_view.php s�o coletados
 $nome = $_POST['nome'];
 $email = $_POST['email'];
-$idade = $_POST['idade'];
 $genero = $_POST['genero'];
 //o md5 serve para criptograr a senha
 $senha = MD5($_POST['senha']);
 $rsenha = MD5($_POST['rsenha']);
 //criada a conexão com o banco
-$connect = mysqli_connect('localhost','root','admin');
-//$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+//$connect = mysqli_connect('localhost','root','admin');
+$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 //o banco de dados selecionado � o euklides
-$db = mysqli_select_db($connect,'euklides');
+$db = mysqli_select_db($connect,'darti_db');
 
 //criada a query para verificar se existe algum aluno com o email digitado
 $query_select_aluno = "SELECT * FROM aluno WHERE email = '$email'";
@@ -49,7 +48,7 @@ $email_professor_array = $array_professor['email'];
 
 //verifica se h� algum campo vazio
 if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == "" || $senha == null
-    || $rsenha == "" || $rsenha == null|| $idade == "" || $idade == null|| $genero == "" || $genero == null){
+    || $rsenha == "" || $rsenha == null|| $genero == "" || $genero == null){
 	//se houver algum campo vazio, ir� emitir uma janela com a mensagem e o usu�rio ser� encaminhado para a p�gina
 	//cadastro.view
 	echo"<script language='javascript' type='text/javascript'>
@@ -77,8 +76,8 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 		if ($existe_sala == 1){
 				
 			//query para ser inserido na tabela aluno, incluindo a sala em que ele est�
-			$query = "INSERT INTO aluno (nome,email,senha,sala_id,idade,genero) VALUES 
-                        ('$nome','$email','$senha',$cod_sala,'$idade',$genero)";
+			$query = "INSERT INTO aluno (nome,email,senha,sala_id,genero) VALUES 
+                        ('$nome','$email','$senha',$cod_sala,$genero)";
 			//a vari�vel $insert recebe o resultado da execu��o da query
 			$insert = mysqli_query($connect,$query);
 			
@@ -96,8 +95,8 @@ if($email == "" || $email == null || $nome == "" || $nome == null|| $senha == ""
 		//se n�o houver uma sala na URL, significa que quem est� sendo cadastrado � um professor
 		} else {
 			//query para ser inserido na tabela professor
-			$query = "INSERT INTO professor (nome,email,senha,idade,genero) VALUES 
-                        ('$nome','$email','$senha','$idade',$genero)";
+			$query = "INSERT INTO professor (nome,email,senha,genero) VALUES 
+                        ('$nome','$email','$senha',$genero)";
 			//a vari�vel $insert recebe o resultado da execu��o da query
 			$insert = mysqli_query($connect,$query);
 			

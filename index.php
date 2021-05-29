@@ -31,10 +31,7 @@ include 'header_index.php';
 			<label>Nome</label><br><input class="campo" type="text" name="nome" id="nome"><br>
 			<p class=margin_labels></p>
 			<label>E-mail</label><br><input class="campo" type="text" name="email" id="email"><br>
-			<p class=margin_labels></p>
-			<label>Idade</label><br><input class="campo" type="text" name="idade" id="idade"><br>
-			<p class=margin_labels></p>
-			
+			<p class=margin_labels></p>		
 			<label>Sexo</label>
 			<br /><input class="radiobutton" type="radio" id="1" name="genero" 
 						value="1">

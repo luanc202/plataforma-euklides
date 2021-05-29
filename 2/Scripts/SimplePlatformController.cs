@@ -192,7 +192,7 @@ public class SimplePlatformController : MonoBehaviour {
         form.AddField("num_acertos", gameController.level);
         form.AddField("num_erros", 3 - vidas);
         form.AddField("level", ""+gameController.level);
-        WWW www = new WWW("http://localhost/plataforma-euklides/registra_jogada.php", form);
+        WWW www = new WWW("http:///www.darti.ufma.br/plataforma-euklides/registra_jogada.php", form);
         yield return www;
         if(www.text == "0"){
             Debug.Log("Jogada cadastrada");

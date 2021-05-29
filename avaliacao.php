@@ -1,9 +1,9 @@
 <?php
 //cria a conexão
-$connect = mysqli_connect('localhost','root','admin');
-//$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+//$connect = mysqli_connect('localhost','root','admin');
+$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 //seleciona o banco de dados euklides
-$db = mysqli_select_db($connect,'euklides');
+$db = mysqli_select_db($connect,'darti_db');
 
 if(isset($_COOKIE['avaliacao_cod_jogo'])){
 	$cod_jogo = $_COOKIE['avaliacao_cod_jogo'];
@@ -21,7 +21,7 @@ if(isset($_COOKIE['avaliacao_cod_jogo'])){
 // 			$array = explode(',',$selected);
 // 			$resposta = intval($array[0]);
 // 			$pergunta = intval($array[1]);
-	    for ($x = 1; $x <= 32; $x++) {
+	    for ($x = 1; $x <= 34; $x++) {
 	        
 	        $selecionado = "selected-". $x;
 	        

@@ -11,10 +11,10 @@ session_start();
 $email = $_SESSION['email_professor'];
 
 //cria a conex�o
-//$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
-$connect = mysqli_connect('localhost','root','admin');
+$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+//$connect = mysqli_connect('localhost','root','admin');
 //seleciona o banco de dados euklides
-$db = mysqli_select_db($connect,'euklides');
+$db = mysqli_select_db($connect,'darti_db');
 
 //criada a query descobrir o id do professor com o email digitado
 $query_select_professor = "SELECT cod_professor FROM professor WHERE email = '$email'";

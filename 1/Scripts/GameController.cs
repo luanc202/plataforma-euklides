@@ -219,7 +219,7 @@ public class GameController : MonoBehaviour {
         form.AddField("num_acertos", (playerScore/10));
         form.AddField("num_erros", questionPool.Length - (playerScore/10));
         form.AddField("level", rodadaAtual.nomeDoTema);
-        WWW www = new WWW("http://localhost/plataforma-euklides/registra_jogada.php", form);
+        WWW www = new WWW("http:///www.darti.ufma.br/plataforma-euklides/registra_jogada.php", form);
         yield return www;
        // highScoreText.text = www.text;
         if(www.text == "0"){

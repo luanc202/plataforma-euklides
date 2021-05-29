@@ -1,6 +1,6 @@
 @font-face {
 	font-family: Euklides;
-	src: url(http://localhost/plataforma-euklides/fontes/Titillium-Regular.otf);
+	src: url(http://www.darti.ufma.br/plataforma-euklides/fontes/Titillium-Regular.otf);
 }
 
 body {
@@ -15,12 +15,19 @@ body {
 }
 
 h1 {
-	margin: 20px 20px 80px 20px;
+	margin: 20px;
 	padding: 15px;
 	background-color: #d67d31;
 	border: 1px solid black;
 	color: white;
 	text-align: center;
+}
+
+h5 {
+	margin: 20px;
+	padding: 10px;
+	background-color: white;
+	border: 1px solid orange;
 }
 
 .div_pergunta {

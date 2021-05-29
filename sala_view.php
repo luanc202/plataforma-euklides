@@ -7,18 +7,18 @@ if (isset($_GET['cod_sala'])){
 	include 'dao/alunos_dao.php';
 	
 	//cria a conexão
-	$connect = mysqli_connect('localhost','root','admin');
-	//$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+	//$connect = mysqli_connect('localhost','root','admin');
+	$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 	//seleciona o banco de dados euklides
-	$db = mysqli_select_db($connect,'euklides');
+	$db = mysqli_select_db($connect,'darti_db');
 	
 	//se sim, a variável $nome_sala e $id_professor recebem os respectivos valores
 	$cod_sala = $_GET['cod_sala'];
 	$id_professor = $_GET['cod_prof'];
 	//é criado o link para a tela cadastro_view e adicionado como parâmetro o nome da sala
 	//dessa forma, os alunos podem se cadastrar direto na sala
-	//$link = "http://www.darti.ufma.br/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
-	$link = "http://localhost/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
+	$link = "http://www.darti.ufma.br/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
+	//$link = "http://localhost/plataforma-euklides/index.php?cod_sala=$cod_sala&cod_prof=$id_professor";
 	
 // 	//cria a query para verificar quais jogos há na sala
 // 	$query_select_jogo = "SELECT j.cod_jogo, j.nome FROM jogo j, sala s, sala_jogo sj
@@ -59,7 +59,7 @@ if (isset($_GET['cod_sala'])){
 			<a href="sala_view.php?cod_sala=<?php echo $cod_sala;?>&cod_prof=<?php echo $id_professor;?>"><?php echo $nome_sala; ?></a>
 			</div>
 			
-			<h2><?php echo $nome_sala; ?></h2>
+			<h2><?php echo $nome_sala; ?> - <?php echo $disciplina_sala; ?></h2>
 			
 			<div class="div_link">
 				<h3>Link para a sala: </h3> 
@@ -203,9 +203,11 @@ if (isset($_GET['cod_sala'])){
 							jg.aluno_id = $cod_aluno AND 
 							jg.jogo_id = j.cod_jogo AND 
 							jg.jogo_id = $cod_jogo AND 
-							jg.num_acertos =  
-								(SELECT MAX(num_acertos) FROM jogada WHERE jogo_id = $cod_jogo AND 
-								aluno_id = $cod_aluno)";
+                            jg.tempo_gasto = 
+                            (SELECT MIN(tempo_gasto) FROM jogada WHERE jogo_id = $cod_jogo AND
+							aluno_id = $cod_aluno AND num_acertos = 
+                                    (SELECT MAX(num_acertos) FROM jogada WHERE jogo_id = $cod_jogo AND
+							         aluno_id = $cod_aluno))";
 					  		//a variável $jogadas recebe o resultado da execução da query
 					  		$jogadas       = mysqli_query($connect,$query_jogadas);
 					  		
@@ -261,7 +263,7 @@ if (isset($_GET['cod_sala'])){
 							$aluno = $alunosDAO->ConsultarAlunoPorCod($cod_aluno);
 							$aluno_array = mysqli_fetch_array($aluno);
 						?>
-						<h2>Dados <?php echo $aluno_array['nome']?></h2>
+						<h2>Dados - <?php echo $aluno_array['nome']?></h2>
 						
 						<table>
 						<tr>

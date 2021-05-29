@@ -1,16 +1,16 @@
 @font-face {
 	font-family: Euklides;
-	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Regular.otf);
+	src: url(http://www.darti.ufma.br/plataforma-euklides/fontes/Titillium/Titillium-Regular.otf);
 }
 
 @font-face {
 	font-family: Euklides-bold;
-	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-Bold.otf);
+	src: url(http://www.darti.ufma.br/plataforma-euklides/fontes/Titillium/Titillium-Bold.otf);
 }
 
 @font-face {
 	font-family: Euklides-italic;
-	src: url(http://localhost/plataforma-euklides/fontes/Titillium/Titillium-SemiboldItalic.otf);
+	src: url(http://www.darti.ufma.br/plataforma-euklides/fontes/Titillium/Titillium-SemiboldItalic.otf);
 }
 
 
@@ -153,10 +153,10 @@ h3 {
 	height: 30px;
 	margin:0 auto;
     display: block;
-    background-image: url(http://localhost/plataforma-euklides/imgs/delete_icon.png);
+    background-image: url(http://www.darti.ufma.br/plataforma-euklides/imgs/delete_icon.png);
     background-size: 25px 25px;
     border-style: solid;
-	color: black;
+	border-color: white;
 }
 
 .div_novo_jogo {

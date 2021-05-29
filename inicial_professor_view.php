@@ -10,10 +10,10 @@
 		$email = $_SESSION['email_professor'];
 		$_SESSION['email_professor'] = $email; 
 		//cria a conex�o
-		$connect = mysqli_connect('localhost','root','admin');
-		//$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+		//$connect = mysqli_connect('localhost','root','admin');
+		$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
     	//seleciona o banco de dados euklides
-		$db = mysqli_select_db($connect,'euklides');
+		$db = mysqli_select_db($connect,'darti_db');
 		
 		//seleciona o nome de todas as salas criadas pelo professor do email recebido
 		$query_select_salas = "SELECT s.cod_sala, s.nome, p.cod_professor, s.descricao FROM sala s, professor p WHERE p.email = '$email'

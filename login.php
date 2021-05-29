@@ -4,22 +4,22 @@ $email = $_POST['email'];
 $entrar = $_POST['entrar'];
 $senha = md5($_POST['senha']);
 //criar a conexão
-$connect = mysqli_connect('localhost','root','admin');
-//$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+//$connect = mysqli_connect('localhost','root','admin');
+$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 //seleciona o banco de dados
-$db = mysqli_select_db($connect,'euklides');
+$db = mysqli_select_db($connect,'darti_db');
 
 //se for selecionado o bot�o entrar
 if (isset($entrar)) {
 	//a vari�vel $verifica_professor recebe a consulta que verifica se existe um professor cadastrado
 	//com o email e senha fornecidos
 	$verifica_professor = mysqli_query($connect,"SELECT * FROM professor WHERE (email ='$email' AND senha = '$senha')") 
-	or die("erro ao selecionar");
+	or die("usuário não encontrado");
 	
 	//a vari�vel $verifica_aluno recebe a consulta que verifica se existe um aluno cadastrado
 	//com o email e senha fornecidos
 	$verifica_aluno = mysqli_query($connect,"SELECT * FROM aluno WHERE (email ='$email' AND senha = '$senha')")
-	or die("erro ao selecionar");
+	or die("usuário não encontrado");
 	
 	//verifica caso n�o haja nenhum professor ou aluno cadastrado com os dados fornecidos, faz isso pelo n�mero de linhas
 	if (mysqli_num_rows($verifica_professor)<=0 && mysqli_num_rows($verifica_aluno)<=0){

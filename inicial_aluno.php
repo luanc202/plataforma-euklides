@@ -8,13 +8,13 @@ if (isset($_SESSION['email_aluno'])){
 	//recebe o email do aluno como cookie da página login.php
 	$email = $_SESSION['email_aluno'];
 	//cria a conex�o
-	$connect = mysqli_connect('localhost','root','admin');
-	//$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
+	//$connect = mysqli_connect('localhost','root','admin');
+	$connect = mysqli_connect('200.137.132.9','darti_user','1RApnE0P');
 	//seleciona o banco de dados euklides
-	$db = mysqli_select_db($connect,'euklides');
+	$db = mysqli_select_db($connect,'darti_db');
 	
 	//seleciona o nome da sala em que o aluno está
-	$query_select_aluno = "SELECT s.nome, a.cod_aluno, a.sala_id FROM aluno a, sala s WHERE a.email = '$email' AND
+	$query_select_aluno = "SELECT s.nome, a.cod_aluno, a.sala_id, s.disciplina FROM aluno a, sala s WHERE a.email = '$email' AND
 	s.cod_sala = a.sala_id";
 	//$select_aluno recebe o resultado da execução da query
 	$select_aluno = mysqli_query($connect,$query_select_aluno);
@@ -22,6 +22,7 @@ if (isset($_SESSION['email_aluno'])){
 	$array_aluno = mysqli_fetch_array($select_aluno);
 	//$nome_sala recebe o nome da sala do aluno
 	$nome_sala = $array_aluno['nome'];
+	$disciplina_sala = $array_aluno['disciplina'];
 	$cod_aluno = $array_aluno['cod_aluno'];
 	$cod_sala = $array_aluno['sala_id'];
 	
@@ -44,7 +45,7 @@ if (isset($_SESSION['email_aluno'])){
 			<div class="atalhos">
 			<a href="inicial_aluno.php" class="link_sem_traco">Início</a>
 			</div>
-			<h2><?php echo $nome_sala; ?></h2>
+			<h2><?php echo $nome_sala; ?> - <?php echo $disciplina_sala; ?></h2>
 		  	
 		  	<?php 
 	
