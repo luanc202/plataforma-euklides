@@ -5,7 +5,11 @@ module.exports = {
     "./templates/**/*.html.twig",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'euklides': '#63438e',
+      },
+    },
   },
   plugins: [],
 }
