@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<section class="h-screen">
+		<div class="h-3/5 flex justify-center">
+			<div class="w-3/5 g-6 flex h-full flex-wrap items-center justify-center lg:justify-center">
+				<div class="border-stone-600 border-2 p-6 rounded-md mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
+
+					{{ form_start(registrationForm) }}
+                    <div class="relative mb-6" data-te-input-wrapper-init>
+					    {{ form_errors(registrationForm) }}
+                    </div>
+                    <div class="relative mb-6" data-te-input-wrapper-init>
+						{{ form_row(registrationForm.name, {
+                            attr: {
+                                class: 'peer block min-h-[auto] w-full rounded border-2 border-gray-500 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none text-neutral-950 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0',
+                                placeholder: 'Nome',
+                            },
+                            label: false,
+                        }) }}
+						{{ form_label(registrationForm, 'Nome', {
+                            label_attr: {
+                                class: 'pointer-events-none absolute left-3 top-0 mb-0 bg-white px-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-neutral-950 transition-all duration-200 ease-out -translate-y-[1.10rem] peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none'
+                            }
+                        }) }}
+					</div>
+					<div class="relative mb-6" data-te-input-wrapper-init>
+						{{ form_row(registrationForm.email, {
+                            attr: {
+                                class: 'peer block min-h-[auto] w-full rounded border-2 border-gray-500 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none text-neutral-950 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0',
+                                placeholder: 'Email',
+                            },
+                            label: false,
+                        }) }}
+						{{ form_label(registrationForm, 'Email', {
+                            label_attr: {
+                                class: 'pointer-events-none absolute left-3 top-0 mb-0 bg-white px-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-neutral-950 transition-all duration-200 ease-out -translate-y-[1.10rem] peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none'
+                            }
+                        }) }}
+					</div>
+                    <div class="relative mb-6">
+                        {{ form_row(registrationForm.plainPassword, {
+                                attr: {
+                                    class: 'peer block min-h-[auto] w-full rounded border-2 border-gray-500 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none text-neutral-950 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0',
+                                    placeholder: 'Senha',
+                                },
+                                label: false,
+                            }) }}
+                        {{ form_label(registrationForm, 'Senha', {
+                                label_attr: {
+                                    class: 'pointer-events-none absolute left-3 top-0 mb-0 bg-white px-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-neutral-950 transition-all duration-200 ease-out -translate-y-[1.10rem] peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none'
+                                }
+                            }) }}
+                    </div>
+                    <div class="relative mb-6 flex flex-row">
+					    {{ form_row(registrationForm.agreeTerms, {
+                            label: 'Eu aceito os termos de uso',
+                            label_attr: {
+                                class: 'text-md text-neutral-950',
+                            },
+
+                        }) }}
+                    </div>
+
+					<div>
+                        <button type="submit" class="p-2 rounded-md border-2 border-gray-500 transition-all duration-200 ease-out hover:bg-slate-600 hover:text-white">Cadastrar</button>
+                    </div>
+					{{ form_end(registrationForm) }}
+				</div>
+			</section>
+		{% endblock %}
