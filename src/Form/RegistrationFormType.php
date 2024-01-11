@@ -23,7 +23,7 @@ class RegistrationFormType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nome',
                 'attr' => ['class' => 'form-control'],
-                'requied' => true,
+                'required' => true,
             ])
             ->add('agreeTerms', CheckboxType::class, [
                                 'mapped' => false,
